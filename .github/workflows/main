@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 */12 * * *'  # 每12小时运行一次（比原配置的每2小时更合理）
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 设置 Node.js 环境
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21.5.0
+          cache: 'npm'
+
+      # 安装依赖并构建
+      - name: Install and Build
+        run: |
+          npm config set registry https://registry.npmmirror.com
+          npm install
+          node fetchURLByAndroid720p.js  # 根据实际需要选择执行脚本
+
+      # 部署到 GitHub Pages
+      - name: Deploy
+        uses: actions/deploy-pages@v2
