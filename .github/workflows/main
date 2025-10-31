@@ -1,36 +1,64 @@
-name: Deploy to GitHub Pages
+name: Scheduled Auto Update
 
 on:
-  push:
-    branches: [ "main" ]
   schedule:
-    - cron: '0 */12 * * *'  # 每12小时运行一次（比原配置的每2小时更合理）
+    - cron: '0 * * * *'  # 每小时的0分触发（即整点执行）
+  workflow_dispatch:
+
 
 jobs:
-  deploy:
+  auto-update:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
     permissions:
-      contents: write
-      pages: write
-      id-token: write
+      contents: write  # 必须开启写入权限
 
     steps:
-      - uses: actions/checkout@v4
+    # 1. 带权限的代码检出
+    - name: Checkout with PAT
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        persist-credentials: true
 
-      # 设置 Node.js 环境
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 21.5.0
-          cache: 'npm'
+    # 2. 自动生成requirements.txt（关键修复）
+    - name: Generate requirements.txt
+      run: |
+        pip install pipreqs
+        pipreqs ./ --encoding=utf8 --force
+        
+    # 3. Python环境配置
+    - name: Setup Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'  # 自动缓存依赖
 
-      # 安装依赖并构建
-      - name: Install and Build
-        run: |
-          npm config set registry https://registry.npmmirror.com
-          npm install
-          node fetchURLByAndroid720p.js  # 根据实际需要选择执行脚本
+    # 4. 安装依赖（带镜像源）
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+    # 5. 主脚本执行
+    - name: Execute update script
+      run: python main.py
+      env:
+        TZ: Asia/Shanghai
 
-      # 部署到 GitHub Pages
-      - name: Deploy
-        uses: actions/deploy-pages@v2
+    # 6. 智能提交优化
+    - name: Commit & Push Changes
+      if: always()
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        
+        if [ -n "$(git status --porcelain)" ]; then
+          git add .
+          git commit -m "AutoUpdate: $(date +'%Y-%m-%d %H:%M:%S')"
+          git pull --rebase
+          git push origin main
+          echo "Changes pushed"
+        else
+          echo "No changes"
+        fi
