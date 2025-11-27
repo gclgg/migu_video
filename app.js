@@ -218,6 +218,55 @@ const server = http.createServer(async (req, res) => {
 })
 
 server.listen(port, async () => {
+ 
+
+  // 设置定时器，3小时更新一次
+  setInterval(async () => {
+    printBlue(`\n准备更新文件 ${getDateTimeStr(new Date())}\n`)
+    hours += 3
+    try {
+      await update(hours)
+    } catch (error) {
+      printRed("更新失败")
+    }
+
+    printBlue(`\n当前已运行${hours}小时`)
+  }, 3 * 60 * 60 * 1000);
+
+  try {
+    // 初始化数据
+    await update(hours)
+  } catch (error) {
+    printRed("更新失败")
+  }
+
+  console.log()
+
+ server.listen(port, async () => {
+
+  // 设置定时器，3小时更新一次
+  setInterval(async () => {
+    printBlue(`\n准备更新文件 ${getDateTimeStr(new Date())}\n`)
+    hours += 3
+    try {
+      await update(hours)
+    } catch (error) {
+      printRed("更新失败")
+    }
+
+    printBlue(`\n当前已运行${hours}小时`)
+  }, 3 * 60 * 60 * 1000);
+
+  try {
+    // 初始化数据
+    await update(hours)
+  } catch (error) {
+    printRed("更新失败")
+  }
+
+  console.log()
+
+ server.listen(port, async () => {
 
   // 设置定时器，3小时更新一次
   setInterval(async () => {
@@ -243,5 +292,6 @@ server.listen(port, async () => {
 
   printYellow("定时器设置完毕 每3小时更新一次")
   printYellow("Server running at port " + port)
-  printYellow("访问地址:  " + host)
+  /* **** 修复：来访 Host 为空时动态显示  **** */
+  printYellow("访问地址:  " + (host || `http://${server.address().address}:${port}`).replace(/::/g, '[::]')) // IPv6 中括号友好
 })
