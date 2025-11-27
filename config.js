@@ -5,8 +5,8 @@ const token = process.env.mtoken || ""
 // 本地运行端口号
 const port = process.env.mport || 1234
 // 访问地址，用于epg和节目访问。
-// 部署后访问地址是什么就填什么，默认只可本机使用
-const host = process.env.mhost || "http://localhost:1234"
+// 空字符串 = 动态使用来访者 Host（IPv6/域名/IP 自动适配）
+const host = ""
 // 画质
 // 4蓝光(需要登录且账号有VIP)
 // 3高清
