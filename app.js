@@ -25,6 +25,9 @@ const server = http.createServer(async (req, res) => {
   // 获取请求方法、URL 和请求头
   const { method, url, headers } = req;
 
+  // >>> ① 动态 Host：配置为空就用来访者 Host
+  const publicHost = host || headers.host;
+
   console.log()
   printMagenta("请求地址：" + url)
 
@@ -42,8 +45,10 @@ const server = http.createServer(async (req, res) => {
   // 响应接口内容
   if (url == "/" || url == "/interface.txt") {
     try {
-      // 读取文件内容
-      const data = readFileSync(process.cwd() + "/interface.txt");
+      // ② 替换掉文件里的 localhost:1234
+      let data = readFileSync(process.cwd() + "/interface.txt")
+        .toString()
+        .replaceAll('http://localhost:1234', `http://${publicHost}`);
 
       // 设置响应头
       res.setHeader('Content-Type', 'text/plain;charset=UTF-8');
@@ -67,8 +72,10 @@ const server = http.createServer(async (req, res) => {
   if (url == "/playback.xml") {
 
     try {
-      // 读取文件内容
-      const data = readFileSync(process.cwd() + "/playback.xml");
+      // ② 同样替换 localhost:1234
+      let data = readFileSync(process.cwd() + "/playback.xml")
+        .toString()
+        .replaceAll('http://localhost:1234', `http://${publicHost}`);
 
       // 设置响应头
       res.setHeader('Content-Type', 'text/xml;charset=UTF-8');
@@ -238,4 +245,3 @@ server.listen(port, async () => {
   printYellow("Server running at port " + port)
   printYellow("访问地址:  " + host)
 })
-
