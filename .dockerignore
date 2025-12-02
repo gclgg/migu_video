@@ -1,4 +1,6 @@
-/.git
-/node_modules
-/.workflow
+.git
+node_modules
+.workflow
 *.bak
+.github
+.gitignore

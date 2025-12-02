@@ -20,8 +20,7 @@ https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/ref
 
 # 本地部署
 
-使用node自带的http模块实现。
-
+> [!warning]
 > 注意事项
 >
 > 1. 登录后使用不保证安全，请谨慎使用
@@ -29,21 +28,21 @@ https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/ref
 
 ## 配置
 
-配置信息如下，默认仅本机可用
+配置信息如下，默认本机和局域网可用
 
-| 变量名    | 默认值                  | 类型   | 介绍                                       |
-| --------- | ----------------------- | ------ | ------------------------------------------ |
-| muserId   |                         | string | 用户id，可在网页端登录获取                 |
-| mtoken    |                         | string | 用户token，可在网页端登录获取              |
-| mport     | 1234                    | number | 服务本地启动端口                           |
-| mhost     | <http://localhost:1234> | string | 访问地址，用于节目和epg地址生成            |
-| mrateType | 3                       | number | 画质 2:标清 3:高清 4:蓝光(需要登录且有VIP) |
+| 变量名    | 默认值 | 类型   | 介绍                                         |
+| --------- | ------ | ------ | -------------------------------------------- |
+| muserId   |        | string | 用户id，可在网页端登录获取                   |
+| mtoken    |        | string | 用户token，可在网页端登录获取                |
+| mport     | 1234   | number | 本地运行端口号                               |
+| mhost     |        | string | 公网/自定义访问地址 格式<http://你的ip:1234> |
+| mrateType | 3      | number | 画质 2:标清 3:高清 4:蓝光(需登录且有VIP)     |
 
 ## node
 
 ### 环境要求
 
-需要 NodeJS 15+ 环境
+需要 NodeJS 18+ 环境
 
 ### 安装
 

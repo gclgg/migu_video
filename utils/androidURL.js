@@ -206,7 +206,8 @@ async function getAndroidURL(userId, token, pid, rateType) {
 
   return {
     url: resURL,
-    rateType: parseInt(rateType)
+    rateType: parseInt(rateType),
+    content: respData
   }
 
 }
@@ -265,7 +266,8 @@ async function getAndroidURL720p(pid) {
 
   return {
     url: resURL,
-    rateType: parseInt(rateType)
+    rateType: parseInt(rateType),
+    content: respData
   }
 
 }

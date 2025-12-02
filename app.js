@@ -16,6 +16,7 @@ let loading = false
 
 const server = http.createServer(async (req, res) => {
 
+  // console.dir(req, { depth: null })
   while (loading) {
     await delay(50)
   }
@@ -25,7 +26,7 @@ const server = http.createServer(async (req, res) => {
   // 获取请求方法、URL 和请求头
   const { method, url, headers } = req;
 
-  console.log()
+  // printGreen("")
   printMagenta("请求地址：" + url)
 
   if (method != "GET") {
@@ -40,13 +41,27 @@ const server = http.createServer(async (req, res) => {
   }
 
   // 响应接口内容
-  if (url == "/" || url == "/interface.txt") {
+  if (url == "/" || url == "/interface.txt" || url == "/m3u") {
     try {
       // 读取文件内容
-      const data = readFileSync(process.cwd() + "/interface.txt");
+      let data = readFileSync(process.cwd() + "/interface.txt");
 
+      let replaceHost = `http://${headers.host}`
+
+      if (host != "" && (headers["x-real-ip"] || headers["x-forwarded-for"] || host.indexOf(headers.host) != -1)) {
+        replaceHost = host
+      }
+
+      data = `${data}`.replaceAll("${replace}", replaceHost);
+
+      let contentType = 'text/plain;charset=UTF-8'
+      if (url == "/m3u") {
+        // contentType = "audio/mpegurl;charset=UTF-8"
+        contentType = "audio/x-mpegurl; charset=utf-8"
+        res.setHeader('content-disposition', "inline; filename=\"interface.m3u\"");
+      }
       // 设置响应头
-      res.setHeader('Content-Type', 'text/plain;charset=UTF-8');
+      res.setHeader('Content-Type', contentType);
       res.statusCode = 200;
       res.end(data); // 发送文件内容
 
@@ -91,7 +106,6 @@ const server = http.createServer(async (req, res) => {
   let pid = urlSplit
   let params = ""
 
-
   if (urlSplit.match(/\?/)) {
     // 回放
     printGreen("处理传入参数")
@@ -102,7 +116,6 @@ const server = http.createServer(async (req, res) => {
   } else {
     printGrey("无参数传入")
   }
-
 
   if (isNaN(pid)) {
     res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
@@ -168,13 +181,43 @@ const server = http.createServer(async (req, res) => {
     return
   }
 
+  // 直接访问g开头的域名链接时概率会302到不能播放的地址,目前不清楚原因,在这重定向正确地址
+  // printRed(resObj.url)
+  if (resObj.url != "") {
+    let z = 1
+    while (z <= 6) {
+      if (z >= 2) {
+        printYellow(`获取失败,正在第${z - 1}次重试`)
+      }
+      axio
+      const obj = await fetch(`${resObj.url}`, {
+        method: "GET",
+        redirect: "manual"
+      })
+
+      const location = obj.headers.get("Location")
+      if (location.startsWith("http://hlsz")) {
+        resObj.url = location
+        break
+      }
+      if (z == 6) {
+        printRed(`获取失败`)
+        resObj.url = ""
+      } else {
+        await delay(150)
+      }
+      z++
+    }
+  }
+
   printGreen(`添加节目缓存 ${pid}`)
   // 加入缓存
   urlCache[pid] = {
-    // 有效期2小时 节目调整改为2分钟
-    valTime: Date.now() + (resObj.url == "" ? 2 * 60 * 1000 : 2 * 60 * 60 * 1000),
+    // 有效期3小时 节目调整时改为1分钟
+    valTime: Date.now() + (resObj.url == "" ? 1 * 60 * 1000 : 3 * 60 * 60 * 1000),
     url: resObj.url
   }
+  // console.log(resObj.url)
 
   if (resObj.url == "") {
     printRed(`${pid} 节目调整，暂不提供服务`)
@@ -185,7 +228,6 @@ const server = http.createServer(async (req, res) => {
     return
   }
   let playURL = resObj.url
-
 
   // console.dir(playURL, { depth: null })
 
@@ -199,7 +241,6 @@ const server = http.createServer(async (req, res) => {
 
   printGreen("链接获取成功")
 
-
   res.writeHead(302, {
     'Content-Type': 'application/json;charset=UTF-8',
     location: playURL
@@ -212,10 +253,10 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(port, async () => {
 
-  // 设置定时器，3小时更新一次
+  // 设置定时器，6小时更新一次
   setInterval(async () => {
     printBlue(`\n准备更新文件 ${getDateTimeStr(new Date())}\n`)
-    hours += 3
+    hours += 6
     try {
       await update(hours)
     } catch (error) {
@@ -224,7 +265,7 @@ server.listen(port, async () => {
     }
 
     printBlue(`\n当前已运行${hours}小时`)
-  }, 3 * 60 * 60 * 1000);
+  }, 6 * 60 * 60 * 1000);
 
   try {
     // 初始化数据
@@ -234,10 +275,11 @@ server.listen(port, async () => {
     console.log(error)
   }
 
-  console.log()
+  printYellow("每6小时更新一次")
 
-  printYellow("定时器设置完毕 每3小时更新一次")
-  printYellow("Server running at port " + port)
-  printYellow("访问地址:  " + host)
+  printGreen(`本地地址: http://localhost:${port}`)
+  if (host != "") {
+    printGreen(`自定义地址: ${host}`)
+  }
 })
 

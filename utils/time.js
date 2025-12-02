@@ -16,4 +16,8 @@ function getDateTimeStr(date) {
     `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}`
 }
 
-export { getDateString, getTimeString, getDateTimeString, getDateTimeStr }
+function getLogDateTime(date) {
+  return `${getDateTimeStr(date)}:${String(date.getMilliseconds()).padStart(3, "0")}`
+}
+
+export { getDateString, getTimeString, getDateTimeString, getDateTimeStr, getLogDateTime }
