@@ -183,6 +183,7 @@ const server = http.createServer(async (req, res) => {
 
   // 直接访问g开头的域名链接时概率会302到不能播放的地址,目前不清楚原因,在这重定向正确地址
   // printRed(resObj.url)
+  let changeFailed = false
   if (resObj.url != "") {
     let z = 1
     while (z <= 6) {
@@ -200,8 +201,8 @@ const server = http.createServer(async (req, res) => {
         break
       }
       if (z == 6) {
-        printRed(`获取失败`)
-        resObj.url = ""
+        printYellow(`获取失败,返回原链接`)
+        changeFailed = true
       } else {
         await delay(150)
       }
@@ -210,10 +211,20 @@ const server = http.createServer(async (req, res) => {
   }
 
   printGreen(`添加节目缓存 ${pid}`)
+  // 缓存有效时长
+  let addTime = 3 * 60 * 60 * 1000
+  // 节目调整时改为1分钟
+  if (resObj.url == "") {
+    addTime = 1 * 60 * 1000
+  }
+  // 尝试失败后原地址改为1小时
+  if (changeFailed) {
+    addTime = 1 * 60 * 60 * 1000
+  }
   // 加入缓存
   urlCache[pid] = {
     // 有效期3小时 节目调整时改为1分钟
-    valTime: Date.now() + (resObj.url == "" ? 1 * 60 * 1000 : 3 * 60 * 60 * 1000),
+    valTime: Date.now() + addTime,
     url: resObj.url
   }
   // console.log(resObj.url)

@@ -57,9 +57,7 @@ async function fetchURLByAndroid720p() {
             resObj.url = location
             break
           }
-          if (z == 6) {
-            resObj.url = ""
-          } else {
+          if (z != 6) {
             await delay(150)
           }
           z++
