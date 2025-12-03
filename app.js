@@ -196,6 +196,10 @@ const server = http.createServer(async (req, res) => {
       })
 
       const location = obj.headers.get("Location")
+
+      if (location == "" || location == undefined || location == null) {
+        continue
+      }
       if (location.startsWith("http://hlsz")) {
         resObj.url = location
         break
@@ -279,7 +283,7 @@ server.listen(port, async () => {
 
   try {
     // 初始化数据
-    await update(hours)
+    // await update(hours)
   } catch (error) {
     printRed("更新失败")
     console.log(error)
