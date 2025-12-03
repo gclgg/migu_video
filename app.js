@@ -189,7 +189,6 @@ const server = http.createServer(async (req, res) => {
       if (z >= 2) {
         printYellow(`获取失败,正在第${z - 1}次重试`)
       }
-      axio
       const obj = await fetch(`${resObj.url}`, {
         method: "GET",
         redirect: "manual"
