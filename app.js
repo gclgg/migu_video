@@ -283,7 +283,7 @@ server.listen(port, async () => {
 
   try {
     // 初始化数据
-    // await update(hours)
+    await update(hours)
   } catch (error) {
     printRed("更新失败")
     console.log(error)
