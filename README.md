@@ -28,15 +28,15 @@ https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/ref
 
 ## 配置
 
-配置信息如下，默认本机和局域网可用
+配置信息如下，默认本机和局域网可用，未登录720p已失效
 
-| 变量名    | 默认值 | 类型   | 介绍                                         |
-| --------- | ------ | ------ | -------------------------------------------- |
-| muserId   |        | string | 用户id，可在网页端登录获取                   |
-| mtoken    |        | string | 用户token，可在网页端登录获取                |
-| mport     | 1234   | number | 本地运行端口号                               |
-| mhost     |        | string | 公网/自定义访问地址 格式<http://你的ip:1234> |
-| mrateType | 3      | number | 画质 2:标清 3:高清 4:蓝光(需登录且有VIP)     |
+| 变量名    | 默认值 | 类型   | 介绍                                             |
+| --------- | ------ | ------ | ------------------------------------------------ |
+| muserId   |        | string | 用户id，可在网页端登录获取                       |
+| mtoken    |        | string | 用户token，可在网页端登录获取                    |
+| mport     | 1234   | number | 本地运行端口号                                   |
+| mhost     |        | string | 公网/自定义访问地址 格式<http://你的ip:1234>     |
+| mrateType | 3      | number | 画质 2:标清 3:高清(需登录) 4:蓝光(需登录且有VIP) |
 
 ## node
 
