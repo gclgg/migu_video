@@ -1,7 +1,9 @@
-import axios from "axios"
-import { AESencrypt, getStringMD5, KEY_AES, RSAencrypt } from "./EncryUtils.js"
+import { AESencrypt, getStringMD5, RSAencrypt } from "./EncryUtils.js"
 
-// 类似URLEncoder.encode()的效果
+/**
+ * @param {string} str - 
+ * @returns {string} - 
+ */
 function encodeURLEncoder(str) {
   return encodeURIComponent(str)
     .replace(/[!'()*]/g, (c) =>
@@ -10,7 +12,12 @@ function encodeURLEncoder(str) {
     .replace(/%20/g, '+');
 }
 
-// 刷新token
+/**
+ * 刷新token
+ * @param {string} userId - 用户ID
+ * @param {string} token - 用户token
+ * @returns {boolean} - 是否成功
+ */
 async function refreshToken(userId, token) {
 
   if (userId == null || userId == undefined || token == null || token == undefined) {
@@ -22,8 +29,8 @@ async function refreshToken(userId, token) {
   const baseData = `{"userToken":"${token}","autoDelay":true,"deviceId":"","userId":"${userId}","timestamp":"${time}"}`
 
   // 请求体加密
-  const encryData = AESencrypt(baseData, KEY_AES)
-  const data = '{"data":"' + encryData.substring(0, encryData.length - 2) + '\\u003d\\u003d"}'
+  const encryData = AESencrypt(baseData)
+  const data = '{"data":"' + encryData + '"}'
 
   // 签名
   const str = getStringMD5(data)
@@ -39,9 +46,11 @@ async function refreshToken(userId, token) {
   const params = `?clientId=27fb3129-5a54-45bc-8af1-7dc8f1155501&sign=${sign}&signType=RSA`
 
   // 发送请求
-  const respResult = await axios.post(baseURL + params, data, {
-    headers: headers
-  }).then(r => r.data)
+  const respResult = await fetch(baseURL + params, {
+    headers: headers,
+    method: "post",
+    body: data
+  }).then(r => r.json())
 
   // 处理响应结果
   if (respResult.resultCode == "REFRESH_TOKEN_SUCCESS") {

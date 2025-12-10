@@ -17,7 +17,7 @@ function printYellow(msg) {
 }
 
 function printBlue(msg) {
-  basePrint("\x1B[33m", msg)
+  basePrint("\x1B[34m", msg)
 }
 
 function printMagenta(msg) {

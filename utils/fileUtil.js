@@ -40,5 +40,12 @@ function renameFileSync(oldFilePath, newFilePath) {
     }
   })
 }
+function copyFileSync(filePath, newFilePath, mode) {
+  fs.copyFileSync(filePath, newFilePath, mode, err => {
+    if (err) {
+      throw new Error(`文件复制失败${filePath} -> ${newFilePath}`)
+    }
+  })
+}
 
-export { createFile, writeFile, appendFile, appendFileSync, readFileSync, renameFileSync }
+export { createFile, writeFile, appendFile, appendFileSync, readFileSync, renameFileSync, copyFileSync }

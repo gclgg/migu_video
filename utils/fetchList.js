@@ -1,4 +1,3 @@
-import axios from "axios"
 
 // 睡眠
 function delay(ms) {
@@ -9,10 +8,10 @@ function delay(ms) {
 
 // 获取分类集合
 async function cateList() {
-  const resp = await axios.get("https://program-sc.miguvideo.com/live/v2/tv-data/1ff892f2b5ab4a79be6e25b69d2f5d05")
-  let liveList = resp.data.body.liveList
+  const resp = await fetch("https://program-sc.miguvideo.com/live/v2/tv-data/1ff892f2b5ab4a79be6e25b69d2f5d05").then(r => r.json())
+  let liveList = resp.body.liveList
   // 热门内容重复
-  liveList = liveList.filter((item) => {
+  liveList = liveList.filter(item => {
     return item.name != "热门"
   })
 
@@ -32,8 +31,8 @@ async function dataList() {
 
   for (let cate in cates) {
     try {
-      const resp = await axios.get("https://program-sc.miguvideo.com/live/v2/tv-data/" + cates[cate].vomsID)
-      cates[cate].dataList = resp.data.body.dataList
+      const resp = await fetch("https://program-sc.miguvideo.com/live/v2/tv-data/" + cates[cate].vomsID).then(r => r.json())
+      cates[cate].dataList = resp.body.dataList
     } catch (error) {
       cates[cate].dataList = [];
     }

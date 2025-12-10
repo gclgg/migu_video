@@ -98,14 +98,6 @@ function getEncryptURL(exports, videoURL) {
 /**
  * h5端现已失效
  * 获取ddCalcu
- * 大致思路:把puData最后一个字符和第一个字符拼接，然后拼接倒数第二个跟第二个，一直循环，
- *     当第1 2 3 4次(从0开始)循环时需要插入特殊标识字符
- * 特殊字符:
- *     都是根据一些数字字符串的某一位的值对应某数组的值确定的，形如数组[数字字符串[第几位]],具体根据第几位每个版本都不一样
- *     第1次是根据userid确定的，未登录时为固定字母
- *     第2位是根据时间戳确定(需要yyyyMMddhhmmss格式)
- *     第3根据节目id
- *     第4是根据平台确定的
  * @param {string} puData - 服务器返回的那个东东
  * @param {string} programId - 节目ID
  * @param {string} clientType - 平台类型 h5 android
@@ -130,7 +122,6 @@ function getddCalcu(puData, programId, clientType, rateType) {
     return ""
   }
 
-  // words第1位是根据userId的第7位(从0开始)数字对应keys里的字母生成的
   // 不登录标清是默认v
   const id = userId ? userId : process.env.USERID
   if (id) {
@@ -219,8 +210,7 @@ function getddCalcu720p(puData, programId) {
   if (programId == null || programId == undefined) {
     return ""
   }
-
-  const keys = "0123456789"
+  const keys = "cdabyzwxkl"
 
   let ddCalcu = []
   for (let i = 0; i < puData.length / 2; i++) {
@@ -230,16 +220,16 @@ function getddCalcu720p(puData, programId) {
     switch (i) {
       case 1:
         // ddCalcu.push(token=="" ?"e":keys[] )
-        ddCalcu.push("e")
+        ddCalcu.push("v")
         break;
       case 2:
-        ddCalcu.push(keys[parseInt(getDateString(new Date())[6])])
+        ddCalcu.push(keys[parseInt(getDateString(new Date())[2])])
         break;
       case 3:
-        ddCalcu.push(keys[programId[2]])
+        ddCalcu.push(keys[programId[6]])
         break;
       case 4:
-        ddCalcu.push("0")
+        ddCalcu.push("a")
         break;
     }
   }
@@ -265,7 +255,7 @@ function getddCalcuURL720p(puDataURL, programId) {
   const puData = puDataURL.split("&puData=")[1]
   const ddCalcu = getddCalcu720p(puData, programId)
 
-  return `${puDataURL}&ddCalcu=${ddCalcu}`
+  return `${puDataURL}&ddCalcu=${ddCalcu}&sv=10004&ct=android`
 }
 
 export { initWasm, getEncryptURL, getddCalcuURL, getddCalcuURL720p }

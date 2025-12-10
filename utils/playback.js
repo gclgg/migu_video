@@ -1,4 +1,3 @@
-import axios from "axios"
 import { getDateString, getDateTimeString } from "./time.js"
 import { appendFileSync } from "./fileUtil.js"
 import { cntvNames } from "./datas.js"
@@ -7,7 +6,7 @@ import { cntvNames } from "./datas.js"
 async function getPlaybackData(programId) {
   const date = new Date()
   const today = getDateString(date)
-  const resp = await axios.get(`https://program-sc.miguvideo.com/live/v2/tv-programs-data/${programId}/${today}`).then(r => r.data)
+  const resp = await fetch(`https://program-sc.miguvideo.com/live/v2/tv-programs-data/${programId}/${today}`).then(r => r.json())
   return resp.body?.program[0]?.content
 }
 
@@ -43,7 +42,7 @@ async function updatePlaybackDataByCntv(program, filePath) {
   const date = new Date()
   const today = getDateString(date)
   const cntvName = cntvNames[program.name]
-  const resp = await axios.get(`https://api.cntv.cn/epg/epginfo3?serviceId=shiyi&d=${today}&c=${cntvName}`).then(r => r.data)
+  const resp = await fetch(`https://api.cntv.cn/epg/epginfo3?serviceId=shiyi&d=${today}&c=${cntvName}`).then(r => r.json())
 
   const playbackData = resp[cntvName]?.program
   if (!playbackData) {

@@ -68,6 +68,7 @@ const server = http.createServer(async (req, res) => {
       loading = false
       return
     } catch (error) {
+      printRed(error)
 
       res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
       res.end("访问异常")
@@ -92,6 +93,7 @@ const server = http.createServer(async (req, res) => {
       loading = false
       return
     } catch (error) {
+      printRed(error)
 
       res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
       res.end("访问异常")
@@ -138,10 +140,14 @@ const server = http.createServer(async (req, res) => {
       let playURL = urlCache[pid].url
       // 节目调整
       if (playURL == "") {
-        printRed(`${pid} 节目调整，暂不提供服务`)
+        let msg = "节目调整，暂不提供服务"
+        if (urlCache[pid].content != null) {
+          msg = urlCache[pid].content.message
+        }
+        printRed(`${pid} ${msg}`)
 
         res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
-        res.end("节目调整，暂不提供服务")
+        res.end(msg)
         loading = false
         return
       }
@@ -173,6 +179,7 @@ const server = http.createServer(async (req, res) => {
       resObj = await getAndroidURL(userId, token, pid, rateType)
     }
   } catch (error) {
+    printRed(error)
 
     res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
     res.end("链接请求出错，请稍后重试")
@@ -200,7 +207,7 @@ const server = http.createServer(async (req, res) => {
       if (location == "" || location == undefined || location == null) {
         continue
       }
-      if (location.startsWith("http://hlsz")) {
+      if (location.startsWith("http://hlsz") || location.startsWith("http://mgsp") || location.startsWith("http://trial")) {
         resObj.url = location
         break
       }
@@ -214,6 +221,7 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
+  // printRed(resObj.url)
   printGreen(`添加节目缓存 ${pid}`)
   // 缓存有效时长
   let addTime = 3 * 60 * 60 * 1000
@@ -229,15 +237,20 @@ const server = http.createServer(async (req, res) => {
   urlCache[pid] = {
     // 有效期3小时 节目调整时改为1分钟
     valTime: Date.now() + addTime,
-    url: resObj.url
+    url: resObj.url,
+    content: resObj.content,
   }
   // console.log(resObj.url)
 
   if (resObj.url == "") {
-    printRed(`${pid} 节目调整，暂不提供服务`)
+    let msg = "节目调整，暂不提供服务"
+    if (resObj.content != null) {
+      msg = resObj.content.message
+    }
+    printRed(`${pid} ${msg}`)
 
     res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
-    res.end("节目调整，暂不提供服务")
+    res.end(msg)
     loading = false
     return
   }
@@ -267,29 +280,31 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(port, async () => {
 
-  // 设置定时器，6小时更新一次
+  // 设置定时器，3小时更新一次
   setInterval(async () => {
-    printBlue(`\n准备更新文件 ${getDateTimeStr(new Date())}\n`)
-    hours += 6
+    printBlue(`准备更新文件 ${getDateTimeStr(new Date())}`)
+    hours += 3
     try {
       await update(hours)
     } catch (error) {
+      printRed(error)
       printRed("更新失败")
       console.log(error)
     }
 
-    printBlue(`\n当前已运行${hours}小时`)
-  }, 6 * 60 * 60 * 1000);
+    printBlue(`当前已运行${hours}小时`)
+  }, 3 * 60 * 60 * 1000);
 
   try {
     // 初始化数据
     await update(hours)
   } catch (error) {
+    printRed(error)
     printRed("更新失败")
     console.log(error)
   }
 
-  printYellow("每6小时更新一次")
+  printGreen("每3小时更新一次")
 
   printGreen(`本地地址: http://localhost:${port}`)
   if (host != "") {
