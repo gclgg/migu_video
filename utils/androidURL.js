@@ -1,6 +1,6 @@
 import { getStringMD5 } from "./EncryUtils.js";
 import { getddCalcuURL, getddCalcuURL720p } from "./ddCalcuURL.js";
-import { printYellow } from "./colorOut.js";
+import { printDebug, printYellow } from "./colorOut.js";
 
 /**
  * @typedef {object} SaltSign
@@ -80,7 +80,7 @@ async function getAndroidURL(userId, token, pid, rateType) {
     }).then(r => r.json())
   }
 
-  // console.dir(respData, { depth: null })
+  printDebug(respData)
   // console.log(respData)
   const url = respData.body.urlInfo?.url
   // console.log(rateType)
@@ -98,7 +98,6 @@ async function getAndroidURL(userId, token, pid, rateType) {
 
   rateType = respData.body.urlInfo?.rateType
   // console.log("清晰度" + rateType)
-
   return {
     url: resURL,
     rateType: parseInt(rateType),
@@ -144,6 +143,7 @@ async function getAndroidURL720p(pid) {
     headers: headers
   }).then(r => r.json())
 
+  printDebug(respData)
   // console.dir(respData, { depth: null })
   const url = respData.body.urlInfo?.url
   // console.log(rateType)

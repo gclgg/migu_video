@@ -1,3 +1,4 @@
+import { printDebug } from "./colorOut.js";
 import { AESencrypt, getStringMD5, RSAencrypt } from "./EncryUtils.js"
 
 /**
@@ -57,6 +58,7 @@ async function refreshToken(userId, token) {
     // console.log(respResult)
     return true
   }
+  console.dir(respResult, { depth: null })
 
   return false
 }

@@ -4,7 +4,7 @@ import { readFileSync } from "./utils/fileUtil.js";
 import { host, port, rateType, token, userId } from "./config.js";
 import { getDateTimeStr } from "./utils/time.js";
 import update from "./updateData.js";
-import { printBlue, printGreen, printGrey, printMagenta, printRed, printYellow } from "./utils/colorOut.js";
+import { printBlue, printDebug, printGreen, printGrey, printMagenta, printRed, printYellow } from "./utils/colorOut.js";
 import { delay } from "./utils/fetchList.js";
 
 // 运行时长
@@ -16,7 +16,6 @@ let loading = false
 
 const server = http.createServer(async (req, res) => {
 
-  // console.dir(req, { depth: null })
   while (loading) {
     await delay(50)
   }
@@ -134,16 +133,22 @@ const server = http.createServer(async (req, res) => {
     const valTime = urlCache[pid].valTime - Date.now()
     // 缓存是否有效
     if (valTime >= 0) {
-
-      printGreen(`缓存有效，使用缓存数据`)
-
       let playURL = urlCache[pid].url
+      let msg = "节目调整，暂不提供服务"
+      if (urlCache[pid].content != null) {
+        if (urlCache[pid].content.body.auth.logined) {
+          printGreen("登录认证成功")
+          if (urlCache[pid].content.body.auth.authResult == "FAIL") {
+            printRed(`认证失败 视频内容不完整 可能缺少相关VIP: ${urlCache[pid].content.body.auth.resultDesc}`)
+          }
+        } else {
+          printYellow("未登录")
+        }
+        msg = urlCache[pid].content.message
+      }
+      printGreen(`缓存有效，使用缓存数据`)
       // 节目调整
       if (playURL == "") {
-        let msg = "节目调整，暂不提供服务"
-        if (urlCache[pid].content != null) {
-          msg = urlCache[pid].content.message
-        }
         printRed(`${pid} ${msg}`)
 
         res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
@@ -187,9 +192,8 @@ const server = http.createServer(async (req, res) => {
     loading = false
     return
   }
+  printDebug(`添加加密字段后链接 ${resObj.url}`)
 
-  // 直接访问g开头的域名链接时概率会302到不能播放的地址,目前不清楚原因,在这重定向正确地址
-  // printRed(resObj.url)
   let changeFailed = false
   if (resObj.url != "") {
     let z = 1
@@ -204,12 +208,11 @@ const server = http.createServer(async (req, res) => {
 
       const location = obj.headers.get("Location")
 
-      if (location == "" || location == undefined || location == null) {
-        continue
-      }
-      if (location.startsWith("http://hlsz") || location.startsWith("http://mgsp") || location.startsWith("http://trial")) {
-        resObj.url = location
-        break
+      if (location != "" && location != undefined && location != null) {
+        if (location.startsWith("http://hlsz") || location.startsWith("http://mgsp") || location.startsWith("http://trial")) {
+          resObj.url = location
+          break
+        }
       }
       if (z == 6) {
         printYellow(`获取失败,返回原链接`)
@@ -220,7 +223,14 @@ const server = http.createServer(async (req, res) => {
       z++
     }
   }
-
+  if (resObj.content.body.auth.logined) {
+    printGreen("登录认证成功")
+    if (resObj.content.body.auth.authResult == "FAIL") {
+      printRed(`认证失败 视频内容不完整 可能缺少相关VIP: ${resObj.content.body.auth.resultDesc}`)
+    }
+  } else {
+    printYellow("未登录")
+  }
   // printRed(resObj.url)
   printGreen(`添加节目缓存 ${pid}`)
   // 缓存有效时长
@@ -240,7 +250,6 @@ const server = http.createServer(async (req, res) => {
     url: resObj.url,
     content: resObj.content,
   }
-  // console.log(resObj.url)
 
   if (resObj.url == "") {
     let msg = "节目调整，暂不提供服务"
@@ -255,8 +264,6 @@ const server = http.createServer(async (req, res) => {
     return
   }
   let playURL = resObj.url
-
-  // console.dir(playURL, { depth: null })
 
   // 添加回放参数
   if (params != "") {
@@ -289,7 +296,6 @@ server.listen(port, async () => {
     } catch (error) {
       printRed(error)
       printRed("更新失败")
-      console.log(error)
     }
 
     printBlue(`当前已运行${hours}小时`)
@@ -301,7 +307,6 @@ server.listen(port, async () => {
   } catch (error) {
     printRed(error)
     printRed("更新失败")
-    console.log(error)
   }
 
   printGreen("每3小时更新一次")

@@ -1,3 +1,4 @@
+import { debug } from "../config.js"
 import { getLogDateTime } from "./time.js"
 
 function basePrint(color, msg) {
@@ -27,7 +28,12 @@ function printMagenta(msg) {
 function printGrey(msg) {
   basePrint("\x1B[2m", msg)
 }
+function printDebug(obj) {
+  if (debug) {
+    console.dir(obj, { depth: null })
+  }
+}
 
 export {
-  printGreen, printBlue, printRed, printYellow, printMagenta, printGrey
+  printGreen, printBlue, printRed, printYellow, printMagenta, printGrey, printDebug
 }

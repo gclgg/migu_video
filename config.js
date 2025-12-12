@@ -13,5 +13,6 @@ const host = process.env.mhost || ""
 const rateType = process.env.mrateType || 3
 // 是否刷新token，可能是导致封号的原因
 // const refreshToken = process.env.mrefreshToken || true
+const debug = process.env.mdebug || false
 
-export { userId, token, port, host, rateType/* , refreshToken */ }
+export { userId, token, port, host, rateType, debug/* , refreshToken */ }
