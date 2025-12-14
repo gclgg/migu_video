@@ -17,7 +17,7 @@ function encodeURLEncoder(str) {
  * 刷新token
  * @param {string} userId - 用户ID
  * @param {string} token - 用户token
- * @returns {boolean} - 是否成功
+ * @returns {} - 是否成功
  */
 async function refreshToken(userId, token) {
 

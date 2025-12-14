@@ -40,10 +40,15 @@ const server = http.createServer(async (req, res) => {
   }
 
   // 响应接口内容
-  if (url == "/" || url == "/interface.txt" || url == "/m3u") {
+  if (url == "/" || url == "/interface.txt" || url == "/m3u" || url == "/txt") {
     try {
+      let data
       // 读取文件内容
-      let data = readFileSync(process.cwd() + "/interface.txt");
+      if (url == "/txt") {
+        data = readFileSync(process.cwd() + "/interfaceTXT.txt");
+      } else {
+        data = readFileSync(process.cwd() + "/interface.txt");
+      }
 
       let replaceHost = `http://${headers.host}`
 

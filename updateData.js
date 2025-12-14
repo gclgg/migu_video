@@ -14,13 +14,18 @@ async function updateTV(hours) {
   const date = new Date()
   const start = date.getTime()
   let interfacePath = ""
+  let interfaceTXTPath = ""
   // 获取数据
   const datas = await dataList()
   printGreen("TV数据获取成功！")
 
   interfacePath = `${process.cwd()}/interface.txt.bak`
+  // txt
+  interfaceTXTPath = `${process.cwd()}/interfaceTXT.txt.bak`
   // 创建写入空内容
   writeFile(interfacePath, "")
+  // txt
+  writeFile(interfaceTXTPath, "")
 
   if (!(hours % 24)) {
     // 每24小时刷新token
@@ -44,6 +49,8 @@ async function updateTV(hours) {
   for (let i = 0; i < datas.length; i++) {
 
     const data = datas[i].dataList
+    // txt
+    appendFile(interfaceTXTPath, `${datas[i].name},#genre#\n`)
     // 写入节目
     for (let j = 0; j < data.length; j++) {
 
@@ -51,6 +58,8 @@ async function updateTV(hours) {
 
       // 写入节目
       appendFile(interfacePath, `#EXTINF:-1 tvg-id="${data[j].name}" tvg-name="${data[j].name}" tvg-logo="${data[j].pics.highResolutionH}" group-title="${datas[i].name}",${data[j].name}\n\${replace}/${data[j].pID}\n`)
+      // txt
+      appendFile(interfaceTXTPath, `${data[j].name},\${replace}/${data[j].pID}\n`)
       // printGreen(`    节目链接更新成功`)
     }
     printGreen(`分类###:${datas[i].name} 更新完成！`)
@@ -61,6 +70,8 @@ async function updateTV(hours) {
   // 重命名
   renameFileSync(playbackFile, playbackFile.replace(".bak", ""))
   renameFileSync(interfacePath, interfacePath.replace(".bak", ""))
+  // txt
+  renameFileSync(interfaceTXTPath, interfaceTXTPath.replace(".bak", ""))
   printGreen("TV更新完成！")
   const end = Date.now()
   printYellow(`TV更新耗时: ${(end - start) / 1000}秒`)
@@ -79,21 +90,26 @@ async function updatePE(hours) {
   // console.dir(datas, { depth: null })
 
   copyFileSync(`${process.cwd()}/interface.txt`, `${process.cwd()}/interface.txt.bak`, 0)
+  copyFileSync(`${process.cwd()}/interfaceTXT.txt`, `${process.cwd()}/interfaceTXT.txt.bak`, 0)
+
   const interfacePath = `${process.cwd()}/interface.txt.bak`
+  const interfaceTXTPath = `${process.cwd()}/interfaceTXT.txt.bak`
 
   printYellow("开始更新PE...")
 
   for (let i = 1; i < 4; i++) {
     // 日期
     const date = datas.body?.days[i]
+    let relativeDate = "昨天"
+    const dateString = getDateString(new Date())
+    if (date == dateString) {
+      relativeDate = "今天"
+    } else if (parseInt(date.substring(6)) > parseInt(dateString.substring(6))) {
+      relativeDate = "明天"
+    }
+
+    appendFile(interfaceTXTPath, `体育-${relativeDate},#genre#\n`)
     for (const data of datas.body?.matchList[date]) {
-      let relativeDate = "昨天"
-      const dateString = getDateString(new Date())
-      if (date == dateString) {
-        relativeDate = "今天"
-      } else if (parseInt(date.substring(6)) > parseInt(dateString.substring(6))) {
-        relativeDate = "明天"
-      }
 
       let pkInfoTitle = data.pkInfoTitle
       if (data.confrontTeams) {
@@ -118,8 +134,10 @@ async function updatePE(hours) {
               continue
             }
             if (replay.name.match(/.*回放|赛.*/) != null) {
+              const competitionDesc = `${data.competitionName} ${pkInfoTitle} ${replay.name} ${peResult.body.multiPlayList.preList[peResult.body.multiPlayList.preList.length - 1].startTimeStr.substring(11, 16)}`
               // 写入赛事
-              appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${pkInfoTitle}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${data.competitionName} ${pkInfoTitle} ${replay.name} ${peResult.body.multiPlayList.preList[peResult.body.multiPlayList.preList.length - 1].startTimeStr.substring(11, 16)}\n\${replace}/${replay.pID}\n`)
+              appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${competitionDesc}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${competitionDesc}\n\${replace}/${replay.pID}\n`)
+              appendFileSync(interfaceTXTPath, `${competitionDesc},\${replace}/${replay.pID}\n`)
             }
           }
           continue
@@ -130,9 +148,10 @@ async function updatePE(hours) {
           if (live.name.match(/.*集锦.*/) != null || live.startTimeStr == undefined) {
             continue
           }
-
+          const competitionDesc = `${data.competitionName} ${pkInfoTitle} ${live.name} ${live.startTimeStr.substring(11, 16)}`
           // 写入赛事
-          appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${pkInfoTitle}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${data.competitionName} ${pkInfoTitle} ${live.name} ${live.startTimeStr.substring(11, 16)}\n\${replace}/${live.pID}\n`)
+          appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${competitionDesc}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${competitionDesc}\n\${replace}/${live.pID}\n`)
+          appendFileSync(interfaceTXTPath, `${competitionDesc},\${replace}/${live.pID}\n`)
         }
       } catch (error) {
         printRed(`${data.mgdbId} ${pkInfoTitle} 更新失败`)
@@ -144,6 +163,7 @@ async function updatePE(hours) {
 
   // 重命名
   renameFileSync(interfacePath, interfacePath.replace(".bak", ""))
+  renameFileSync(interfaceTXTPath, interfaceTXTPath.replace(".bak", ""))
   printGreen("PE更新完成！")
   const end = Date.now()
   printYellow(`PE更新耗时: ${(end - start) / 1000}秒`)
