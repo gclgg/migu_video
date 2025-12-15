@@ -58,7 +58,7 @@ async function fetchURLByAndroid720p() {
           if (location == "" || location == undefined || location == null) {
             continue
           }
-          if (location.startsWith("http://hlsz")) {
+          if (!location.startsWith("http://bofang")) {
             resObj.url = location
             break
           }

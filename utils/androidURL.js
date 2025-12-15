@@ -45,7 +45,8 @@ async function getAndroidURL(userId, token, pid, rateType) {
   let headers = {
     AppVersion: 2600037000,
     TerminalId: "android",
-    "X-UP-CLIENT-CHANNEL-ID": "2600037000-99000-200300220100002"
+    "X-UP-CLIENT-CHANNEL-ID": "2600037000-99000-200300220100002",
+    "appCode": "miguvideo_default_android"
   }
 
   // 广东卫视有些特殊
@@ -65,7 +66,7 @@ async function getAndroidURL(userId, token, pid, rateType) {
   // 请求
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   let params = "?sign=" + result.sign + "&rateType=" + rateType
-    + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
+    + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt + "&flvEnable=true"
   let respData = await fetch(baseURL + params, {
     headers: headers
   }).then(r => r.json())
@@ -92,6 +93,7 @@ async function getAndroidURL(userId, token, pid, rateType) {
       content: respData
     }
   }
+  pid = respData.body.content.contId
 
   // 将URL加密
   const resURL = getddCalcuURL(url, pid, "android", rateType)
@@ -120,7 +122,8 @@ async function getAndroidURL720p(pid) {
   let headers = {
     AppVersion: `${appVersion}`,
     TerminalId: "android",
-    "X-UP-CLIENT-CHANNEL-ID": `${appVersionID}`
+    "X-UP-CLIENT-CHANNEL-ID": `${appVersionID}`,
+    "appCode": "miguvideo_default_android"
   }
   // console.log(headers)
   const str = timestramp + pid + appVersion.substring(0, 8)
@@ -138,7 +141,7 @@ async function getAndroidURL720p(pid) {
   // 请求
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   const params = "?sign=" + sign + "&rateType=" + rateType
-    + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + salt
+    + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + salt + "&flvEnable=true"
   const respData = await fetch(baseURL + params, {
     headers: headers
   }).then(r => r.json())
@@ -157,6 +160,7 @@ async function getAndroidURL720p(pid) {
   }
 
   rateType = respData.body.urlInfo?.rateType
+  pid = respData.body.content.contId
 
   // 将URL加密
   const resURL = getddCalcuURL720p(url, pid)

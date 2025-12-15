@@ -214,7 +214,7 @@ const server = http.createServer(async (req, res) => {
       const location = obj.headers.get("Location")
 
       if (location != "" && location != undefined && location != null) {
-        if (location.startsWith("http://hlsz") || location.startsWith("http://mgsp") || location.startsWith("http://trial")) {
+        if (!location.startsWith("http://bofang")) {
           resObj.url = location
           break
         }

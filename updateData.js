@@ -134,7 +134,12 @@ async function updatePE(hours) {
               continue
             }
             if (replay.name.match(/.*回放|赛.*/) != null) {
-              const competitionDesc = `${data.competitionName} ${pkInfoTitle} ${replay.name} ${peResult.body.multiPlayList.preList[peResult.body.multiPlayList.preList.length - 1].startTimeStr.substring(11, 16)}`
+              let timeStr = peResult.body.keyword.substring(7)
+              const peResultStartTimeStr = peResult.body.multiPlayList.preList[peResult.body.multiPlayList.preList.length - 1].startTimeStr
+              if (peResultStartTimeStr != undefined) {
+                timeStr = peResultStartTimeStr.substring(11, 16)
+              }
+              const competitionDesc = `${data.competitionName} ${pkInfoTitle} ${replay.name} ${timeStr}`
               // 写入赛事
               appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${competitionDesc}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${competitionDesc}\n\${replace}/${replay.pID}\n`)
               appendFileSync(interfaceTXTPath, `${competitionDesc},\${replace}/${replay.pID}\n`)
