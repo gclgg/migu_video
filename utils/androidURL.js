@@ -66,7 +66,8 @@ async function getAndroidURL(userId, token, pid, rateType) {
   // 请求
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   let params = "?sign=" + result.sign + "&rateType=" + rateType
-    + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt + "&flvEnable=true"
+    + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
+    + "&flvEnable=true&super4k=true&trackSubtitle=true&h265N=true"
   let respData = await fetch(baseURL + params, {
     headers: headers
   }).then(r => r.json())
