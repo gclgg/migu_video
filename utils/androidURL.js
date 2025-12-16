@@ -67,7 +67,7 @@ async function getAndroidURL(userId, token, pid, rateType) {
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   let params = "?sign=" + result.sign + "&rateType=" + rateType
     + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
-    + "&flvEnable=true&super4k=true&trackSubtitle=true&h265N=true"
+    + "&flvEnable=true&super4k=true&h265N=true"
   let respData = await fetch(baseURL + params, {
     headers: headers
   }).then(r => r.json())
@@ -75,8 +75,9 @@ async function getAndroidURL(userId, token, pid, rateType) {
   if (respData.rid == 'TIPS_NEED_MEMBER') {
     printYellow("该账号没有会员 正在降低画质")
 
-    params = "?sign=" + result.sign + "&rateType=" + (rateType - 1)
+    params = "?sign=" + result.sign + "&rateType=3"
       + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
+      + "&flvEnable=true&super4k=true&h265N=true"
     respData = await fetch(baseURL + params, {
       headers: headers
     }).then(r => r.json())
