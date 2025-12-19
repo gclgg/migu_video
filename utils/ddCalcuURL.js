@@ -145,7 +145,7 @@ function getddCalcu(puData, programId, clientType, rateType) {
     ddCalcu.push(puData[i])
     switch (i) {
       case 1:
-        ddCalcu.push(words[i - 1])
+        ddCalcu.push(userId.length > 8 ? words[i - 1] : "v")
         break;
       case 2:
         ddCalcu.push(keys[parseInt(getDateString(new Date())[0])])
