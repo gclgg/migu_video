@@ -1,3 +1,4 @@
+import { fetchUrl } from "./net.js"
 
 function delay(ms) {
   return new Promise(resolve => {
@@ -7,7 +8,7 @@ function delay(ms) {
 
 // 获取分类集合
 async function cateList() {
-  const resp = await fetch("https://program-sc.miguvideo.com/live/v2/tv-data/1ff892f2b5ab4a79be6e25b69d2f5d05").then(r => r.json())
+  const resp = await fetchUrl("https://program-sc.miguvideo.com/live/v2/tv-data/1ff892f2b5ab4a79be6e25b69d2f5d05")
   let liveList = resp.body.liveList
   // 热门内容重复
   liveList = liveList.filter(item => {
@@ -30,7 +31,7 @@ async function dataList() {
 
   for (let cate in cates) {
     try {
-      const resp = await fetch("https://program-sc.miguvideo.com/live/v2/tv-data/" + cates[cate].vomsID).then(r => r.json())
+      const resp = await fetchUrl("https://program-sc.miguvideo.com/live/v2/tv-data/" + cates[cate].vomsID)
       cates[cate].dataList = resp.body.dataList
     } catch (error) {
       cates[cate].dataList = [];

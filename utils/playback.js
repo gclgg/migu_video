@@ -1,12 +1,13 @@
 import { getDateString, getDateTimeString } from "./time.js"
 import { appendFileSync } from "./fileUtil.js"
 import { cntvNames } from "./datas.js"
+import { fetchUrl } from "./net.js"
 
 
 async function getPlaybackData(programId) {
   const date = new Date()
   const today = getDateString(date)
-  const resp = await fetch(`https://program-sc.miguvideo.com/live/v2/tv-programs-data/${programId}/${today}`).then(r => r.json())
+  const resp = await fetchUrl(`https://program-sc.miguvideo.com/live/v2/tv-programs-data/${programId}/${today}`)
   return resp.body?.program[0]?.content
 }
 
@@ -42,7 +43,7 @@ async function updatePlaybackDataByCntv(program, filePath) {
   const date = new Date()
   const today = getDateString(date)
   const cntvName = cntvNames[program.name]
-  const resp = await fetch(`https://api.cntv.cn/epg/epginfo3?serviceId=shiyi&d=${today}&c=${cntvName}`).then(r => r.json())
+  const resp = await fetchUrl(`https://api.cntv.cn/epg/epginfo3?serviceId=shiyi&d=${today}&c=${cntvName}`)
 
   const playbackData = resp[cntvName]?.program
   if (!playbackData) {

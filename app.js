@@ -72,7 +72,7 @@ const server = http.createServer(async (req, res) => {
       loading = false
       return
     } catch (error) {
-      printRed(error)
+      console.log(error)
 
       res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
       res.end("访问异常")
@@ -97,7 +97,7 @@ const server = http.createServer(async (req, res) => {
       loading = false
       return
     } catch (error) {
-      printRed(error)
+      console.log(error)
 
       res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
       res.end("访问异常")
@@ -189,7 +189,7 @@ const server = http.createServer(async (req, res) => {
       resObj = await getAndroidURL(userId, token, pid, rateType)
     }
   } catch (error) {
-    printRed(error)
+    console.log(error)
 
     res.writeHead(200, { "Content-Type": "application/json;charset=UTF-8" })
     res.end("链接请求出错，请稍后重试")
@@ -299,7 +299,7 @@ server.listen(port, async () => {
     try {
       await update(hours)
     } catch (error) {
-      printRed(error)
+      console.log(error)
       printRed("更新失败")
     }
 
@@ -310,7 +310,7 @@ server.listen(port, async () => {
     // 初始化数据
     await update(hours)
   } catch (error) {
-    printRed(error)
+    console.log(error)
     printRed("更新失败")
   }
 

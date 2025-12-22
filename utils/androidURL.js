@@ -1,6 +1,7 @@
 import { getStringMD5 } from "./EncryUtils.js";
 import { getddCalcuURL, getddCalcuURL720p } from "./ddCalcuURL.js";
 import { printDebug, printYellow } from "./colorOut.js";
+import { fetchUrl } from "./net.js";
 
 /**
  * @typedef {object} SaltSign
@@ -67,20 +68,20 @@ async function getAndroidURL(userId, token, pid, rateType) {
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   let params = "?sign=" + result.sign + "&rateType=" + rateType
     + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
-    + "&flvEnable=true&super4k=true&h265N=true"
-  let respData = await fetch(baseURL + params, {
+    + "&flvEnable=true&super4k=true&h265N=true&4kvivid=true&2Kvivid=true&vivid=2"
+  let respData = await fetchUrl(baseURL + params, {
     headers: headers
-  }).then(r => r.json())
+  })
 
   if (respData.rid == 'TIPS_NEED_MEMBER') {
     printYellow("该账号没有会员 正在降低画质")
 
     params = "?sign=" + result.sign + "&rateType=3"
       + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
-      + "&flvEnable=true&super4k=true&h265N=true"
-    respData = await fetch(baseURL + params, {
+      + "&flvEnable=true&super4k=true&h265N=true&4kvivid=true&2Kvivid=true&vivid=2"
+    respData = await fetchUrl(baseURL + params, {
       headers: headers
-    }).then(r => r.json())
+    })
   }
 
   printDebug(respData)
@@ -144,9 +145,10 @@ async function getAndroidURL720p(pid) {
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   const params = "?sign=" + sign + "&rateType=" + rateType
     + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + salt + "&flvEnable=true"
-  const respData = await fetch(baseURL + params, {
+    + "&flvEnable=true&super4k=true&h265N=true&4kvivid=true&2Kvivid=true&vivid=2"
+  const respData = await fetchUrl(baseURL + params, {
     headers: headers
-  }).then(r => r.json())
+  })
 
   printDebug(respData)
   // console.dir(respData, { depth: null })

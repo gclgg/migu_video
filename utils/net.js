@@ -1,5 +1,8 @@
 import os from "os"
 
+// const controller = new AbortController();
+// const timeoutId = setTimeout(() => controller.abort(), 15000);
+
 function getLocalIPv(ver = 4) {
   const ips = []
   const inter = os.networkInterfaces()
@@ -22,6 +25,15 @@ function getLocalIPv(ver = 4) {
   return ips
 }
 
+async function fetchUrl(url, opts = {}) {
+  // opts["signal"] = controller.signal
+  const res = await fetch(url, opts)
+    .then(r => r.json())
+    .catch(err => console.log(err))
+  // clearTimeout(timeoutId);
+  return res
+}
+
 export {
-  getLocalIPv
+  getLocalIPv, fetchUrl
 }

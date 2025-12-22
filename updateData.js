@@ -5,6 +5,7 @@ import { /* refreshToken as mrefreshToken, */ host, token, userId } from "./conf
 import refreshToken from "./utils/refreshToken.js"
 import { printGreen, printRed, printYellow } from "./utils/colorOut.js"
 import { getDateString } from "./utils/time.js"
+import { fetchUrl } from "./utils/net.js"
 
 /**
  * @param {Number} hours -更新小时数 
@@ -85,7 +86,7 @@ async function updatePE(hours) {
   const date = new Date()
   const start = date.getTime()
   // 获取PE数据
-  const datas = await fetch("http://v0-sc.miguvideo.com/vms-match/v6/staticcache/basic/match-list/normal-match-list/0/all/default/1/miguvideo").then(r => r.json())
+  const datas = await fetchUrl("http://v0-sc.miguvideo.com/vms-match/v6/staticcache/basic/match-list/normal-match-list/0/all/default/1/miguvideo")
   printGreen("PE数据获取成功！")
   // console.dir(datas, { depth: null })
 
@@ -116,11 +117,11 @@ async function updatePE(hours) {
         pkInfoTitle = `${data.confrontTeams[0].name}VS${data.confrontTeams[1].name}`
       }
       // const peResult = await fetch(`http://app-sc.miguvideo.com/vms-match/v5/staticcache/basic/all-view-list/${data.mgdbId}/2/miguvideo`).then(r => r.json())
-      const peResult = await fetch(`https://vms-sc.miguvideo.com/vms-match/v6/staticcache/basic/basic-data/${data.mgdbId}/miguvideo`).then(r => r.json())
+      const peResult = await fetchUrl(`https://vms-sc.miguvideo.com/vms-match/v6/staticcache/basic/basic-data/${data.mgdbId}/miguvideo`)
       try {
         // 比赛已结束
         if (peResult.body.endTime < Date.now()) {
-          const replayResult = await fetch(`http://app-sc.miguvideo.com/vms-match/v5/staticcache/basic/all-view-list/${data.mgdbId}/2/miguvideo`).then(r => r.json())
+          const replayResult = await fetchUrl(`http://app-sc.miguvideo.com/vms-match/v5/staticcache/basic/all-view-list/${data.mgdbId}/2/miguvideo`)
           let replayList = replayResult.body?.replayList
           if (replayList == null || replayList == undefined) {
             replayList = peResult.body.multiPlayList.replayList

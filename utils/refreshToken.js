@@ -1,5 +1,5 @@
-import { printDebug } from "./colorOut.js";
 import { AESencrypt, getStringMD5, RSAencrypt } from "./EncryUtils.js"
+import { fetchUrl } from "./net.js";
 
 /**
  * @param {string} str - 
@@ -46,19 +46,22 @@ async function refreshToken(userId, token) {
   const baseURL = "https://migu-app-umnb.miguvideo.com/login/token_refresh_migu_plus"
   const params = `?clientId=27fb3129-5a54-45bc-8af1-7dc8f1155501&sign=${sign}&signType=RSA`
 
-  // 发送请求
-  const respResult = await fetch(baseURL + params, {
-    headers: headers,
-    method: "post",
-    body: data
-  }).then(r => r.json())
+  try {
+    // 发送请求
+    const respResult = await fetchUrl(baseURL + params, {
+      headers: headers,
+      method: "post",
+      body: data
+    })
 
-  // 处理响应结果
-  if (respResult.resultCode == "REFRESH_TOKEN_SUCCESS") {
-    // console.log(respResult)
-    return true
+    // 处理响应结果
+    if (respResult.resultCode == "REFRESH_TOKEN_SUCCESS") {
+      // console.log(respResult)
+      return true
+    }
+    console.dir(respResult, { depth: null })
+  } catch (error) {
   }
-  console.dir(respResult, { depth: null })
 
   return false
 }

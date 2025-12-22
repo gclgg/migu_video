@@ -1,4 +1,5 @@
 import { userId } from "../config.js"
+import { fetchUrl } from "./net.js"
 import { getDateString } from "./time.js"
 
 const list = {
@@ -70,7 +71,7 @@ function encrypt(videoURL, memoryView, getEncrypt) {
  */
 async function initWasm(masmURL) {
   // 获取wasm文件
-  let resp = await fetch(masmURL);
+  let resp = await fetchUrl(masmURL);
   // 初始化
   let { instance } = await WebAssembly.instantiateStreaming(resp, importObj)
   return instance.exports;
