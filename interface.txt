@@ -457,10 +457,6 @@ ${replace}/961335336
 ${replace}/961334168
 #EXTINF:-1 tvg-id="奇才VS马刺" tvg-name="NBA 奇才VS马刺 全场回放（英文原声） 07:55" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2020/1/10/7f7fd4d8-7213-412b-8a19-02521a6ef852.png" group-title="体育-今天",NBA 奇才VS马刺 全场回放（英文原声） 07:55
 ${replace}/961335427
-#EXTINF:-1 tvg-id="国王VS火箭" tvg-name="NBA 国王VS火箭 连睿 周鹏 王润陶 10:45" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2020/1/10/7f7fd4d8-7213-412b-8a19-02521a6ef852.png" group-title="体育-今天",NBA 国王VS火箭 连睿 周鹏 王润陶 10:45
-${replace}/961278727
-#EXTINF:-1 tvg-id="国王VS火箭" tvg-name="NBA 国王VS火箭 英文原声 10:55" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2020/1/10/7f7fd4d8-7213-412b-8a19-02521a6ef852.png" group-title="体育-今天",NBA 国王VS火箭 英文原声 10:55
-${replace}/961278636
 #EXTINF:-1 tvg-id="楚钦独守半区拼到底 因伤退赛盼康复" tvg-name="乒乓球经典赛事 楚钦独守半区拼到底 因伤退赛盼康复 经典赛事 19:00" tvg-logo="https://img.cmvideo.cn/publish/noms_wc/nomsworldcup/2025/11/27/6V1EMT10RN3F.png" group-title="体育-今天",乒乓球经典赛事 楚钦独守半区拼到底 因伤退赛盼康复 经典赛事 19:00
 ${replace}/961246995
 #EXTINF:-1 tvg-id="江苏南钢VS浙江稠州银行" tvg-name="WCBA 江苏南钢VS浙江稠州银行 清流播出 19:25" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2023/10/20/100000000535106f44f7.png" group-title="体育-今天",WCBA 江苏南钢VS浙江稠州银行 清流播出 19:25

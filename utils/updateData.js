@@ -1,11 +1,11 @@
-import { dataList } from "./utils/fetchList.js"
-import { appendFile, appendFileSync, copyFileSync, renameFileSync, writeFile } from "./utils/fileUtil.js"
-import { updatePlaybackData } from "./utils/playback.js"
-import { /* refreshToken as mrefreshToken, */ host, token, userId } from "./config.js"
-import refreshToken from "./utils/refreshToken.js"
-import { printGreen, printRed, printYellow } from "./utils/colorOut.js"
-import { getDateString } from "./utils/time.js"
-import { fetchUrl } from "./utils/net.js"
+import { dataList } from "./fetchList.js"
+import { appendFile, appendFileSync, copyFileSync, renameFileSync, writeFile } from "./fileUtil.js"
+import { updatePlaybackData } from "./playback.js"
+import { /* refreshToken as mrefreshToken, */ host, token, userId } from "../config.js"
+import refreshToken from "./refreshToken.js"
+import { printGreen, printRed, printYellow } from "./colorOut.js"
+import { getDateString } from "./time.js"
+import { fetchUrl } from "./net.js"
 
 /**
  * @param {Number} hours -更新小时数 

@@ -3,7 +3,7 @@ import { getAndroidURL, getAndroidURL720p } from "./utils/androidURL.js";
 import { readFileSync } from "./utils/fileUtil.js";
 import { host, port, rateType, token, userId } from "./config.js";
 import { getDateTimeStr } from "./utils/time.js";
-import update from "./updateData.js";
+import update from "./utils/updateData.js";
 import { printBlue, printDebug, printGreen, printGrey, printMagenta, printRed, printYellow } from "./utils/colorOut.js";
 import { delay } from "./utils/fetchList.js";
 
@@ -295,7 +295,7 @@ server.listen(port, async () => {
   // 设置定时器，3小时更新一次
   setInterval(async () => {
     printBlue(`准备更新文件 ${getDateTimeStr(new Date())}`)
-    hours += 3
+    hours += 6
     try {
       await update(hours)
     } catch (error) {
@@ -304,7 +304,7 @@ server.listen(port, async () => {
     }
 
     printBlue(`当前已运行${hours}小时`)
-  }, 3 * 60 * 60 * 1000);
+  }, 6 * 60 * 60 * 1000);
 
   try {
     // 初始化数据
@@ -314,7 +314,7 @@ server.listen(port, async () => {
     printRed("更新失败")
   }
 
-  printGreen("每3小时更新一次")
+  // printGreen("每3小时更新一次")
 
   printGreen(`本地地址: http://localhost:${port}`)
   if (host != "") {
