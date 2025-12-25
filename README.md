@@ -30,13 +30,14 @@ https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/ref
 
 配置信息如下，默认本机和局域网可用
 
-| 变量名    | 默认值 | 类型   | 介绍                                                                                 |
-| --------- | ------ | ------ | ------------------------------------------------------------------------------------ |
-| muserId   |        | string | 用户id<br>可在网页端登录获取                                                         |
-| mtoken    |        | string | 用户token<br>可在网页端登录获取                                                      |
-| mport     | 1234   | number | 本地运行端口号                                                                       |
-| mhost     |        | string | 公网/自定义访问地址<br>格式<http://你的ip:1234>                                      |
+| 变量名    | 默认值 | 类型   | 介绍                                                                                      |
+| --------- | ------ | ------ | ----------------------------------------------------------------------------------------- |
+| muserId   |        | string | 用户id<br>可在网页端登录获取                                                              |
+| mtoken    |        | string | 用户token<br>可在网页端登录获取                                                           |
+| mport     | 1234   | number | 本地运行端口号                                                                            |
+| mhost     |        | string | 公网/自定义访问地址<br>格式<http://ip:port>                                               |
 | mrateType | 3      | number | 画质<br>2: 标清<br>3: 高清<br>4: 蓝光<br>7: 原画<br>9: 4k<br>ps:蓝光及以上需要登录且有VIP |
+| mpass     |        | string | 访问密码 大小写字母和数字<br>添加后访问格式 <http://ip:port/mpass/>...                    |
 
 ## node
 

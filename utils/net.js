@@ -1,7 +1,5 @@
 import os from "os"
-
-// const controller = new AbortController();
-// const timeoutId = setTimeout(() => controller.abort(), 15000);
+import { printRed } from "./colorOut.js";
 
 function getLocalIPv(ver = 4) {
   const ips = []
@@ -26,11 +24,19 @@ function getLocalIPv(ver = 4) {
 }
 
 async function fetchUrl(url, opts = {}) {
-  // opts["signal"] = controller.signal
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => {
+    controller.abort()
+    printRed("请求超时")
+  }, 6000);
+  opts["signal"] = controller.signal
   const res = await fetch(url, opts)
     .then(r => r.json())
-    .catch(err => console.log(err))
-  // clearTimeout(timeoutId);
+    .catch(err => {
+      console.log(err)
+      clearTimeout(timeoutId);
+    })
+  clearTimeout(timeoutId);
   return res
 }
 

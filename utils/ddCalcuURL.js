@@ -97,7 +97,6 @@ function getEncryptURL(exports, videoURL) {
 
 
 /**
- * h5端现已失效
  * 获取ddCalcu
  * @param {string} puData - 服务器返回的那个东东
  * @param {string} programId - 节目ID
@@ -138,6 +137,9 @@ function getddCalcu(puData, programId, clientType, rateType) {
   if (clientType == "android" && rateType == "2") {
     words[0] = "v"
   }
+  if (userId.length > 3 && userId.length <= 8) {
+    words[0] = "e"
+  }
   const puDataLength = puData.length
   let ddCalcu = []
   for (let i = 0; i < puDataLength / 2; i++) {
@@ -146,7 +148,7 @@ function getddCalcu(puData, programId, clientType, rateType) {
     ddCalcu.push(puData[i])
     switch (i) {
       case 1:
-        ddCalcu.push(userId.length > 8 ? words[i - 1] : "v")
+        ddCalcu.push(words[i - 1])
         break;
       case 2:
         ddCalcu.push(keys[parseInt(getDateString(new Date())[0])])

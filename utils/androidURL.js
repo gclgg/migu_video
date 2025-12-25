@@ -1,6 +1,6 @@
 import { getStringMD5 } from "./EncryUtils.js";
 import { getddCalcuURL, getddCalcuURL720p } from "./ddCalcuURL.js";
-import { printDebug, printYellow } from "./colorOut.js";
+import { printDebug, printGreen, printRed, printYellow } from "./colorOut.js";
 import { fetchUrl } from "./net.js";
 
 /**
@@ -177,4 +177,55 @@ async function getAndroidURL720p(pid) {
 
 }
 
-export { getAndroidURL, getAndroidURL720p }
+async function get302URL(resObj) {
+  try {
+    let z = 1
+    while (z <= 6) {
+      if (z >= 2) {
+        printYellow(`获取失败,正在第${z - 1}次重试`)
+      }
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => {
+        controller.abort()
+        printRed("请求超时")
+      }, 6000);
+      const obj = await fetch(`${resObj.url}`, {
+        method: "GET",
+        redirect: "manual",
+        signal: controller.signal
+      }).catch(err => {
+        clearTimeout(timeoutId);
+        console.log(err)
+      })
+      clearTimeout(timeoutId);
+      const location = obj.headers.get("Location")
+
+      if (location != "" && location != undefined && location != null) {
+        if (!location.startsWith("http://bofang")) {
+          return location
+        }
+      }
+      if (z != 6) {
+        await delay(150)
+      }
+      z++
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  printRed(`获取失败,返回原链接`)
+  return ""
+}
+
+function printLoginInfo(resObj) {
+  if (resObj.content.body?.auth?.logined) {
+    printGreen("登录认证成功")
+    if (resObj.content.body.auth.authResult == "FAIL") {
+      printRed(`认证失败 视频内容不完整 可能缺少相关VIP: ${resObj.content.body.auth.resultDesc}`)
+    }
+  } else {
+    printYellow("未登录")
+  }
+}
+
+export { getAndroidURL, getAndroidURL720p, get302URL, printLoginInfo }

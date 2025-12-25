@@ -14,5 +14,7 @@ const rateType = process.env.mrateType || 3
 // 是否刷新token，可能是导致封号的原因
 // const refreshToken = process.env.mrefreshToken || true
 const debug = process.env.mdebug || false
+// 访问密码 大小写字母和数字 添加后访问格式 http://ip:port/mpass/...
+const pass = process.env.mpass || ""
 
-export { userId, token, port, host, rateType, debug/* , refreshToken */ }
+export { userId, token, port, host, rateType, debug/* , refreshToken */, pass }
