@@ -53,11 +53,6 @@ async function getAndroidURL(userId, token, pid, rateType) {
     headers["appCode"] = "miguvideo_default_android"
   }
 
-  // 广东卫视有些特殊
-  if (pid == "608831231") {
-    rateType = 2
-  }
-
   if (rateType != 2 && userId != "" && token != "") {
     headers.UserId = userId
     headers.UserToken = token
@@ -143,10 +138,6 @@ async function getAndroidURL720p(pid) {
   const sign = getStringMD5(md5 + suffix)
 
   let rateType = 3
-  // 广东卫视有些特殊
-  if (pid == "608831231") {
-    rateType = 2
-  }
   // 请求
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   const params = "?sign=" + sign + "&rateType=" + rateType
