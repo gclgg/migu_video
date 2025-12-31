@@ -105,7 +105,7 @@ async function updatePE(hours) {
     const dateString = getDateString(new Date())
     if (date == dateString) {
       relativeDate = "今天"
-    } else if (parseInt(date.substring(6)) > parseInt(dateString.substring(6))) {
+    } else if (parseInt(date) > parseInt(dateString)) {
       relativeDate = "明天"
     }
 

@@ -90,10 +90,10 @@
     <programme channel="CCTV1综合" start="20251231185610 +0800" stop="20251231190000 +0800">
         <title lang="zh">新闻直播间</title>
     </programme>
-    <programme channel="CCTV1综合" start="20251231190000 +0800" stop="20251231194120 +0800">
+    <programme channel="CCTV1综合" start="20251231190000 +0800" stop="20251231195120 +0800">
         <title lang="zh">新闻联播</title>
     </programme>
-    <programme channel="CCTV1综合" start="20251231194120 +0800" stop="20251231200000 +0800">
+    <programme channel="CCTV1综合" start="20251231195120 +0800" stop="20251231200000 +0800">
         <title lang="zh">焦点访谈</title>
     </programme>
     <programme channel="CCTV1综合" start="20251231200000 +0800" stop="20251231220000 +0800">
@@ -420,13 +420,13 @@
     <programme channel="CCTV4中文国际" start="20251231220000 +0800" stop="20251231223000 +0800">
         <title lang="zh">走遍中国-2025-209</title>
     </programme>
-    <programme channel="CCTV4中文国际" start="20251231223000 +0800" stop="20251231230330 +0800">
+    <programme channel="CCTV4中文国际" start="20251231223000 +0800" stop="20251231231330 +0800">
         <title lang="zh">新闻联播</title>
     </programme>
-    <programme channel="CCTV4中文国际" start="20251231230330 +0800" stop="20251231234930 +0800">
+    <programme channel="CCTV4中文国际" start="20251231231330 +0800" stop="20251231235930 +0800">
         <title lang="zh">我哥我嫂第29集</title>
     </programme>
-    <programme channel="CCTV4中文国际" start="20251231234930 +0800" stop="20251231235900 +0800">
+    <programme channel="CCTV4中文国际" start="20251231235930 +0800" stop="20251231235900 +0800">
         <title lang="zh">我哥我嫂第30集</title>
     </programme>
     <channel id="CCTV5体育">
@@ -735,31 +735,31 @@
     <programme channel="CCTV7国防军事" start="20251231182930 +0800" stop="20251231190000 +0800">
         <title lang="zh">国防故事-2025-229</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231190000 +0800" stop="20251231193300 +0800">
+    <programme channel="CCTV7国防军事" start="20251231190000 +0800" stop="20251231194300 +0800">
         <title lang="zh">新闻联播</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231193300 +0800" stop="20251231200300 +0800">
+    <programme channel="CCTV7国防军事" start="20251231194300 +0800" stop="20251231201300 +0800">
         <title lang="zh">军事报道</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231200300 +0800" stop="20251231200930 +0800">
+    <programme channel="CCTV7国防军事" start="20251231201300 +0800" stop="20251231201930 +0800">
         <title lang="zh">国防微视频-军歌嘹亮-有咱就有发言权（十周年版）</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231200930 +0800" stop="20251231204330 +0800">
+    <programme channel="CCTV7国防军事" start="20251231201930 +0800" stop="20251231205330 +0800">
         <title lang="zh">防务新观察-2025-365</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231204330 +0800" stop="20251231211715 +0800">
+    <programme channel="CCTV7国防军事" start="20251231205330 +0800" stop="20251231212715 +0800">
         <title lang="zh">军事纪实-2025备播7</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231211715 +0800" stop="20251231215315 +0800">
+    <programme channel="CCTV7国防军事" start="20251231212715 +0800" stop="20251231220315 +0800">
         <title lang="zh">军迷行天下-2025-53</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231215315 +0800" stop="20251231224345 +0800">
+    <programme channel="CCTV7国防军事" start="20251231220315 +0800" stop="20251231225345 +0800">
         <title lang="zh">冰雪尖刀连3/24</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231224345 +0800" stop="20251231233545 +0800">
+    <programme channel="CCTV7国防军事" start="20251231225345 +0800" stop="20251231234545 +0800">
         <title lang="zh">冰雪尖刀连4/24</title>
     </programme>
-    <programme channel="CCTV7国防军事" start="20251231233545 +0800" stop="20251231235900 +0800">
+    <programme channel="CCTV7国防军事" start="20251231234545 +0800" stop="20251231235900 +0800">
         <title lang="zh">军事纪实-2025备播7</title>
     </programme>
     <channel id="CCTV8电视剧">
@@ -1320,22 +1320,22 @@
     <programme channel="CCTV13新闻" start="20251231180000 +0800" stop="20251231190000 +0800">
         <title lang="zh">新闻直播间</title>
     </programme>
-    <programme channel="CCTV13新闻" start="20251231190000 +0800" stop="20251231193310 +0800">
+    <programme channel="CCTV13新闻" start="20251231190000 +0800" stop="20251231194310 +0800">
         <title lang="zh">新闻联播</title>
     </programme>
-    <programme channel="CCTV13新闻" start="20251231193310 +0800" stop="20251231194120 +0800">
+    <programme channel="CCTV13新闻" start="20251231194310 +0800" stop="20251231195120 +0800">
         <title lang="zh">天气预报</title>
     </programme>
-    <programme channel="CCTV13新闻" start="20251231194120 +0800" stop="20251231200000 +0800">
+    <programme channel="CCTV13新闻" start="20251231195120 +0800" stop="20251231201000 +0800">
         <title lang="zh">焦点访谈</title>
     </programme>
-    <programme channel="CCTV13新闻" start="20251231200000 +0800" stop="20251231210000 +0800">
+    <programme channel="CCTV13新闻" start="20251231201000 +0800" stop="20251231210000 +0800">
         <title lang="zh">东方时空</title>
     </programme>
-    <programme channel="CCTV13新闻" start="20251231210000 +0800" stop="20251231213000 +0800">
+    <programme channel="CCTV13新闻" start="20251231210000 +0800" stop="20251231214000 +0800">
         <title lang="zh">新闻联播</title>
     </programme>
-    <programme channel="CCTV13新闻" start="20251231213000 +0800" stop="20251231235900 +0800">
+    <programme channel="CCTV13新闻" start="20251231214000 +0800" stop="20251231235900 +0800">
         <title lang="zh">年轮2025</title>
     </programme>
     <channel id="CCTV14少儿">
@@ -4254,7 +4254,7 @@
     <programme channel="辽宁卫视" start="20251231231100 +0800" stop="20251231235200 +0800">
         <title lang="zh">欢乐集结号</title>
     </programme>
-    <programme channel="辽宁卫视" start="20251231235200 +0800" stop="20260101000000 +0800">
+    <programme channel="辽宁卫视" start="20251231235200 +0800" stop="20260102000000 +0800">
         <title lang="zh">紫禁城</title>
     </programme>
     <channel id="河北卫视">
