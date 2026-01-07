@@ -18,7 +18,9 @@ const debug = process.env.mdebug || false
 const pass = process.env.mpass || ""
 // 是否开启hdr
 const enableHDR = process.env.menableHDR || true
+// 是否开启h265(原画画质)，开启可能存在兼容性问题，比如浏览器播放没有画面
+const enableH265 = process.env.menableH265 || true
 // 节目信息更新间隔 单位小时 不建议设置太短
 const programInfoUpdateInterval = process.env.mupdateInterval || "6"
 
-export { userId, token, port, host, rateType, debug/* , refreshToken */, pass, enableHDR, programInfoUpdateInterval }
+export { userId, token, port, host, rateType, debug/* , refreshToken */, pass, enableHDR, programInfoUpdateInterval, enableH265 }

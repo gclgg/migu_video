@@ -465,10 +465,6 @@ ${replace}/962176463
 ${replace}/962176447
 #EXTINF:-1 tvg-id="西汉姆联VS诺丁汉森林" tvg-name="英超 西汉姆联VS诺丁汉森林 全场回放（郭灿亮） 03:45" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2021/3/3/51067f839.png" group-title="体育-今天",英超 西汉姆联VS诺丁汉森林 全场回放（郭灿亮） 03:45
 ${replace}/962176507
-#EXTINF:-1 tvg-id="高芙/哈里森出战 Iga率波兰3-0晋级" tvg-name="网球联合杯 高芙/哈里森出战 Iga率波兰3-0晋级 珀斯赛区清流 09:30" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2022/12/28/1000000010041064c3cd.jpg" group-title="体育-今天",网球联合杯 高芙/哈里森出战 Iga率波兰3-0晋级 珀斯赛区清流 09:30
-${replace}/962175420
-#EXTINF:-1 tvg-id="高芙/哈里森出战 Iga率波兰3-0晋级" tvg-name="网球联合杯 高芙/哈里森出战 Iga率波兰3-0晋级 珀斯赛区英文解说 09:30" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2022/12/28/1000000010041064c3cd.jpg" group-title="体育-今天",网球联合杯 高芙/哈里森出战 Iga率波兰3-0晋级 珀斯赛区英文解说 09:30
-${replace}/962175431
 #EXTINF:-1 tvg-id="步行者VS骑士" tvg-name="NBA 步行者VS骑士 全场回放 (董倡硕) 07:55" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2020/1/10/7f7fd4d8-7213-412b-8a19-02521a6ef852.png" group-title="体育-今天",NBA 步行者VS骑士 全场回放 (董倡硕) 07:55
 ${replace}/962178981
 #EXTINF:-1 tvg-id="步行者VS骑士" tvg-name="NBA 步行者VS骑士 全场回放（英文原声） 07:55" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2020/1/10/7f7fd4d8-7213-412b-8a19-02521a6ef852.png" group-title="体育-今天",NBA 步行者VS骑士 全场回放（英文原声） 07:55
@@ -491,14 +487,14 @@ ${replace}/962180309
 ${replace}/962140619
 #EXTINF:-1 tvg-id="米拉·安德列娃迎战盖德基 阿尼西莫娃出战" tvg-name="WTA 米拉·安德列娃迎战盖德基 阿尼西莫娃出战 英文原声 09:00" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2025/3/7/1000000012341069e1a8.jpg" group-title="体育-今天",WTA 米拉·安德列娃迎战盖德基 阿尼西莫娃出战 英文原声 09:00
 ${replace}/962140729
-#EXTINF:-1 tvg-id="翁泓阳登场 陆光祖、凡贤晋级" tvg-name="BWF 翁泓阳登场 陆光祖、凡贤晋级 余博洋 12:00" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2023/5/25/100000001055106085dd.png" group-title="体育-今天",BWF 翁泓阳登场 陆光祖、凡贤晋级 余博洋 12:00
-${replace}/962175220
-#EXTINF:-1 tvg-id="翁泓阳登场 陆光祖、凡贤晋级" tvg-name="BWF 翁泓阳登场 陆光祖、凡贤晋级 2号场 09:00" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2023/5/25/100000001055106085dd.png" group-title="体育-今天",BWF 翁泓阳登场 陆光祖、凡贤晋级 2号场 09:00
+#EXTINF:-1 tvg-id="稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级" tvg-name="BWF 稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级 2号场 09:00" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2023/5/25/100000001055106085dd.png" group-title="体育-今天",BWF 稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级 2号场 09:00
 ${replace}/962141078
-#EXTINF:-1 tvg-id="翁泓阳登场 陆光祖、凡贤晋级" tvg-name="BWF 翁泓阳登场 陆光祖、凡贤晋级 1号场 09:00" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2023/5/25/100000001055106085dd.png" group-title="体育-今天",BWF 翁泓阳登场 陆光祖、凡贤晋级 1号场 09:00
+#EXTINF:-1 tvg-id="稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级" tvg-name="BWF 稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级 1号场 09:00" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2023/5/25/100000001055106085dd.png" group-title="体育-今天",BWF 稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级 1号场 09:00
 ${replace}/962141036
-#EXTINF:-1 tvg-id="翁泓阳登场 陆光祖、凡贤晋级" tvg-name="BWF 翁泓阳登场 陆光祖、凡贤晋级 3号场 09:10" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2023/5/25/100000001055106085dd.png" group-title="体育-今天",BWF 翁泓阳登场 陆光祖、凡贤晋级 3号场 09:10
+#EXTINF:-1 tvg-id="稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级" tvg-name="BWF 稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级 3号场 09:10" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2023/5/25/100000001055106085dd.png" group-title="体育-今天",BWF 稍后高昉洁、蒋振邦/魏雅欣登场 陆光祖、凡贤晋级 3号场 09:10
 ${replace}/962141102
+#EXTINF:-1 tvg-id="国王VS独行侠" tvg-name="NBA 国王VS独行侠 全场回放（邵化谦、季孟年） 11:55" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2020/1/10/7f7fd4d8-7213-412b-8a19-02521a6ef852.png" group-title="体育-今天",NBA 国王VS独行侠 全场回放（邵化谦、季孟年） 11:55
+${replace}/962182886
 #EXTINF:-1 tvg-id="林诗栋冲击开门红 王艺迪PK郑怡静" tvg-name="WTT 林诗栋冲击开门红 王艺迪PK郑怡静 侯英超 周泽昊 15:15" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2025/9/28/1000000004041064e35e.png" group-title="体育-今天",WTT 林诗栋冲击开门红 王艺迪PK郑怡静 侯英超 周泽昊 15:15
 ${replace}/961997851
 #EXTINF:-1 tvg-id="林诗栋冲击开门红 王艺迪PK郑怡静" tvg-name="WTT 林诗栋冲击开门红 王艺迪PK郑怡静 赛场原声 15:30" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2025/9/28/1000000004041064e35e.png" group-title="体育-今天",WTT 林诗栋冲击开门红 王艺迪PK郑怡静 赛场原声 15:30
@@ -507,6 +503,10 @@ ${replace}/961997796
 ${replace}/962162374
 #EXTINF:-1 tvg-id="林诗栋冲击开门红 王艺迪PK郑怡静" tvg-name="WTT 林诗栋冲击开门红 王艺迪PK郑怡静 AI轨迹实时追踪 15:30" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2025/9/28/1000000004041064e35e.png" group-title="体育-今天",WTT 林诗栋冲击开门红 王艺迪PK郑怡静 AI轨迹实时追踪 15:30
 ${replace}/962161976
+#EXTINF:-1 tvg-id="美国队晋级四强 本西奇率瑞士出战" tvg-name="网球联合杯 美国队晋级四强 本西奇率瑞士出战 珀斯赛区清流 09:30" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2022/12/28/1000000010041064c3cd.jpg" group-title="体育-今天",网球联合杯 美国队晋级四强 本西奇率瑞士出战 珀斯赛区清流 09:30
+${replace}/962175420
+#EXTINF:-1 tvg-id="美国队晋级四强 本西奇率瑞士出战" tvg-name="网球联合杯 美国队晋级四强 本西奇率瑞士出战 珀斯赛区英文解说 09:30" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2022/12/28/1000000010041064c3cd.jpg" group-title="体育-今天",网球联合杯 美国队晋级四强 本西奇率瑞士出战 珀斯赛区英文解说 09:30
+${replace}/962175431
 #EXTINF:-1 tvg-id="穆迪PK常冰玉 傅家俊出战" tvg-name="斯诺克 穆迪PK常冰玉 傅家俊出战 5号桌 18:00" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2024/1/16/100000001001106678f6.jpg" group-title="体育-今天",斯诺克 穆迪PK常冰玉 傅家俊出战 5号桌 18:00
 ${replace}/962129935
 #EXTINF:-1 tvg-id="穆迪PK常冰玉 傅家俊出战" tvg-name="斯诺克 穆迪PK常冰玉 傅家俊出战 1号桌 18:00" tvg-logo="https://img.cmvideo.cn/sports/uploadImages/2024/1/16/100000001001106678f6.jpg" group-title="体育-今天",斯诺克 穆迪PK常冰玉 傅家俊出战 1号桌 18:00

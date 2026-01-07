@@ -2,7 +2,7 @@ import { getStringMD5 } from "./EncryUtils.js";
 import { getddCalcuURL, getddCalcuURL720p } from "./ddCalcuURL.js";
 import { printDebug, printGreen, printRed, printYellow } from "./colorOut.js";
 import { fetchUrl } from "./net.js";
-import { enableHDR } from "../config.js";
+import { enableH265, enableHDR } from "../config.js";
 
 /**
  * @typedef {object} SaltSign
@@ -64,14 +64,18 @@ async function getAndroidURL(userId, token, pid, rateType) {
   const result = getSaltAndSign(md5)
 
   let enableHDRStr = ""
-  if (enableHDR) {
+  if (enableHDR != "false") {
     enableHDRStr = "&4kvivid=true&2Kvivid=true&vivid=2"
+  }
+  let enableH265Str = ""
+  if (enableH265 != "false") {
+    enableH265Str = "&h265N=true"
   }
   // 请求
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   let params = "?sign=" + result.sign + "&rateType=" + rateType
     + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
-    + "&flvEnable=true&super4k=true&h265N=true" + enableHDRStr
+    + "&flvEnable=true&super4k=true" + enableH265Str + enableHDRStr
   printDebug(`请求链接: ${baseURL + params}`)
   let respData = await fetchUrl(baseURL + params, {
     headers: headers
@@ -82,7 +86,7 @@ async function getAndroidURL(userId, token, pid, rateType) {
 
     params = "?sign=" + result.sign + "&rateType=3"
       + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
-      + "&flvEnable=true&super4k=true&h265N=true" + enableHDRStr
+      + "&flvEnable=true&super4k=true" + enableH265Str + enableHDRStr
     printDebug(`请求链接: ${baseURL + params}`)
     respData = await fetchUrl(baseURL + params, {
       headers: headers
@@ -146,14 +150,18 @@ async function getAndroidURL720p(pid) {
 
   let rateType = 3
   let enableHDRStr = ""
-  if (enableHDR) {
+  if (enableHDR != "false") {
     enableHDRStr = "&4kvivid=true&2Kvivid=true&vivid=2"
+  }
+  let enableH265Str = ""
+  if (enableH265 != "false") {
+    enableH265Str = "&h265N=true"
   }
   // 请求
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   const params = "?sign=" + sign + "&rateType=" + rateType
     + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + salt
-    + "&flvEnable=true&super4k=true&h265N=true" + enableHDRStr
+    + "&flvEnable=true&super4k=true" + enableH265Str + enableHDRStr
   printDebug(`请求链接: ${baseURL + params}`)
   const respData = await fetchUrl(baseURL + params, {
     headers: headers

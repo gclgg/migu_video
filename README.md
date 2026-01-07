@@ -40,6 +40,7 @@ https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/ref
 | mrateType       | 3      | number  | 画质<br>2: 标清<br>3: 高清<br>4: 蓝光<br>7: 原画<br>9: 4k<br>ps:蓝光及以上需要登录且有VIP |
 | mpass           |        | string  | 访问密码 大小写字母和数字<br>添加后访问格式 <http://ip:port/mpass/>...                    |
 | menableHDR      | true   | boolean | 是否开启HDR                                                                               |
+| menableH265     | true   | boolean | 是否开启h265(原画画质)，开启后可能存在兼容性问题，比如浏览器播放没有画面                  |
 | mupdateInterval | 6      | string  | 节目信息更新间隔，单位小时，不建议设置太短                                                |
 
 ## node
