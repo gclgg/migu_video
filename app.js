@@ -1,5 +1,5 @@
 import http from "node:http"
-import { host, pass, port } from "./config.js";
+import { host, pass, port, programInfoUpdateInterval, token, userId } from "./config.js";
 import { getDateTimeStr } from "./utils/time.js";
 import update from "./utils/updateData.js";
 import { printBlue, printGreen, printMagenta, printRed } from "./utils/colorOut.js";
@@ -31,8 +31,28 @@ const server = http.createServer(async (req, res) => {
       return
     } else {
       printGreen("身份认证成功")
-      url = urlSplit.length == 2 ? "/" : "/" + urlSplit[urlSplit.length - 1]
+      // 有密码且传入用户信息
+      if (urlSplit.length > 3) {
+        url = url.substring(pass.length + 1)
+      } else {
+        url = urlSplit.length == 2 ? "/" : "/" + urlSplit[urlSplit.length - 1]
+      }
     }
+  }
+
+  let urlToken = ""
+  let urlUserId = ""
+  // 匹配是否存在用户信息
+  if (/\/{1}[^\/\s]{1,}\/{1}[^\/\s]{1,}/.test(url)) {
+    const urlSplit = url.split("/")
+    if (urlSplit.length >= 3) {
+      urlUserId = urlSplit[1]
+      urlToken = urlSplit[2]
+      url = urlSplit.length == 3 ? "/" : "/" + urlSplit[urlSplit.length - 1]
+    }
+  } else {
+    urlUserId = userId
+    urlToken = token
   }
 
   // printGreen("")
@@ -53,7 +73,7 @@ const server = http.createServer(async (req, res) => {
 
   // 接口
   if (interfaceList.indexOf(url) !== -1) {
-    const interfaceObj = interfaceStr(url, headers)
+    const interfaceObj = interfaceStr(url, headers, urlUserId, urlToken)
     if (interfaceObj.content == null) {
       interfaceObj.content = "获取失败"
     }
@@ -69,7 +89,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   // 频道
-  const result = await channel(url)
+  const result = await channel(url, urlUserId, urlToken)
 
   // 结果异常
   if (result.code != 302) {
@@ -94,11 +114,11 @@ const server = http.createServer(async (req, res) => {
 })
 
 server.listen(port, async () => {
-
+  const updateInterval = parseInt(programInfoUpdateInterval)
   // 更新
   setInterval(async () => {
     printBlue(`准备更新文件 ${getDateTimeStr(new Date())}`)
-    hours += 6
+    hours += updateInterval
     try {
       await update(hours)
     } catch (error) {
@@ -107,7 +127,7 @@ server.listen(port, async () => {
     }
 
     printBlue(`当前已运行${hours}小时`)
-  }, 6 * 60 * 60 * 1000);
+  }, updateInterval * 60 * 60 * 1000);
 
   try {
     // 初始化数据
@@ -118,6 +138,8 @@ server.listen(port, async () => {
   }
 
   printGreen(`本地地址: http://localhost:${port}${pass == "" ? "" : "/" + pass}`)
+  printGreen(`本程序完全免费，如果您是通过付费渠道获取，那么恭喜你成功被骗了`)
+  printGreen("开源地址: https://github.com/develop202/migu_video 欢迎issue 感谢star")
   if (host != "") {
     printGreen(`自定义地址: ${host}${pass == "" ? "" : "/" + pass}`)
   }

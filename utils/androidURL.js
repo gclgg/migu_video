@@ -2,6 +2,7 @@ import { getStringMD5 } from "./EncryUtils.js";
 import { getddCalcuURL, getddCalcuURL720p } from "./ddCalcuURL.js";
 import { printDebug, printGreen, printRed, printYellow } from "./colorOut.js";
 import { fetchUrl } from "./net.js";
+import { enableHDR } from "../config.js";
 
 /**
  * @typedef {object} SaltSign
@@ -29,7 +30,7 @@ function getSaltAndSign(md5) {
  * @param {string} token - 用户token
  * @param {string} pid - 节目ID
  * @param {number} rateType - 清晰度
- * @returns {object} - 
+ * @returns {} - 
  */
 async function getAndroidURL(userId, token, pid, rateType) {
 
@@ -62,11 +63,16 @@ async function getAndroidURL(userId, token, pid, rateType) {
   const md5 = getStringMD5(str)
   const result = getSaltAndSign(md5)
 
+  let enableHDRStr = ""
+  if (enableHDR) {
+    enableHDRStr = "&4kvivid=true&2Kvivid=true&vivid=2"
+  }
   // 请求
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   let params = "?sign=" + result.sign + "&rateType=" + rateType
     + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
-    + "&flvEnable=true&super4k=true&h265N=true&4kvivid=true&2Kvivid=true&vivid=2"
+    + "&flvEnable=true&super4k=true&h265N=true" + enableHDRStr
+  printDebug(`请求链接: ${baseURL + params}`)
   let respData = await fetchUrl(baseURL + params, {
     headers: headers
   })
@@ -76,7 +82,8 @@ async function getAndroidURL(userId, token, pid, rateType) {
 
     params = "?sign=" + result.sign + "&rateType=3"
       + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + result.salt
-      + "&flvEnable=true&super4k=true&h265N=true&4kvivid=true&2Kvivid=true&vivid=2"
+      + "&flvEnable=true&super4k=true&h265N=true" + enableHDRStr
+    printDebug(`请求链接: ${baseURL + params}`)
     respData = await fetchUrl(baseURL + params, {
       headers: headers
     })
@@ -97,7 +104,7 @@ async function getAndroidURL(userId, token, pid, rateType) {
   pid = respData.body.content.contId
 
   // 将URL加密
-  const resURL = getddCalcuURL(url, pid, "android", rateType)
+  const resURL = getddCalcuURL(url, pid, "android", rateType, userId)
 
   rateType = respData.body.urlInfo?.rateType
   // console.log("清晰度" + rateType)
@@ -113,7 +120,7 @@ async function getAndroidURL(userId, token, pid, rateType) {
 /**
  * 旧版高清画质
  * @param {string} pid - 节目ID
- * @returns {object} - 
+ * @returns {} - 
  */
 async function getAndroidURL720p(pid) {
   // 获取url
@@ -138,11 +145,16 @@ async function getAndroidURL720p(pid) {
   const sign = getStringMD5(md5 + suffix)
 
   let rateType = 3
+  let enableHDRStr = ""
+  if (enableHDR) {
+    enableHDRStr = "&4kvivid=true&2Kvivid=true&vivid=2"
+  }
   // 请求
   const baseURL = "https://play.miguvideo.com/playurl/v1/play/playurl"
   const params = "?sign=" + sign + "&rateType=" + rateType
-    + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + salt + "&flvEnable=true"
-    + "&flvEnable=true&super4k=true&h265N=true&4kvivid=true&2Kvivid=true&vivid=2"
+    + "&contId=" + pid + "&timestamp=" + timestramp + "&salt=" + salt
+    + "&flvEnable=true&super4k=true&h265N=true" + enableHDRStr
+  printDebug(`请求链接: ${baseURL + params}`)
   const respData = await fetchUrl(baseURL + params, {
     headers: headers
   })

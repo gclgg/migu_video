@@ -1,12 +1,12 @@
 import { get302URL, getAndroidURL, getAndroidURL720p, printLoginInfo } from "./androidURL.js";
 import { readFileSync } from "./fileUtil.js";
-import { host, rateType, token, userId } from "../config.js";
+import { host, pass, rateType, token, userId } from "../config.js";
 import { printDebug, printGreen, printGrey, printRed, printYellow } from "./colorOut.js";
 
 // url缓存 降低请求频率
 const urlCache = {}
 
-function interfaceStr(url, headers) {
+function interfaceStr(url, headers, urlUserId, urlToken) {
 
   let result = {
     content: null,
@@ -42,6 +42,12 @@ function interfaceStr(url, headers) {
   }
 
   let replaceHost = `http://${headers.host}`
+  if (pass != "") {
+    replaceHost = `${replaceHost}/${pass}`
+  }
+  if (urlUserId != userId && urlToken != token) {
+    replaceHost = `${replaceHost}/${urlUserId}/${urlToken}`
+  }
 
   if (host != "" && (headers["x-real-ip"] || headers["x-forwarded-for"] || host.indexOf(headers.host) != -1)) {
     replaceHost = host
@@ -52,7 +58,7 @@ function interfaceStr(url, headers) {
   return result
 }
 
-async function channel(url) {
+async function channel(url, urlUserId, urlToken) {
 
   let result = {
     code: 200,
@@ -95,10 +101,10 @@ async function channel(url) {
   let resObj = {}
   try {
     // 未登录请求720p
-    if (rateType >= 3 && (userId == "" || token == "")) {
+    if (rateType >= 3 && (urlUserId == "" || urlToken == "")) {
       resObj = await getAndroidURL720p(pid)
     } else {
-      resObj = await getAndroidURL(userId, token, pid, rateType)
+      resObj = await getAndroidURL(urlUserId, urlToken, pid, rateType)
     }
   } catch (error) {
     console.log(error)

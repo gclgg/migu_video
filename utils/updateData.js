@@ -58,9 +58,9 @@ async function updateTV(hours) {
       await updatePlaybackData(data[j], playbackFile)
 
       // 写入节目
-      appendFile(interfacePath, `#EXTINF:-1 tvg-id="${data[j].name}" tvg-name="${data[j].name}" tvg-logo="${data[j].pics.highResolutionH}" group-title="${datas[i].name}",${data[j].name}\n\${replace}/${pass == "" ? "" : pass + "/"}${data[j].pID}\n`)
+      appendFile(interfacePath, `#EXTINF:-1 tvg-id="${data[j].name}" tvg-name="${data[j].name}" tvg-logo="${data[j].pics.highResolutionH}" group-title="${datas[i].name}",${data[j].name}\n\${replace}/${data[j].pID}\n`)
       // txt
-      appendFile(interfaceTXTPath, `${data[j].name},\${replace}/${pass == "" ? "" : pass + "/"}${data[j].pID}\n`)
+      appendFile(interfaceTXTPath, `${data[j].name},\${replace}/${data[j].pID}\n`)
       // printGreen(`    节目链接更新成功`)
     }
     printGreen(`分类###:${datas[i].name} 更新完成！`)
@@ -142,8 +142,8 @@ async function updatePE(hours) {
               }
               const competitionDesc = `${data.competitionName} ${pkInfoTitle} ${replay.name} ${timeStr}`
               // 写入赛事
-              appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${competitionDesc}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${competitionDesc}\n\${replace}/${pass == "" ? "" : pass + "/"}${replay.pID}\n`)
-              appendFileSync(interfaceTXTPath, `${competitionDesc},\${replace}/${pass == "" ? "" : pass + "/"}${replay.pID}\n`)
+              appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${competitionDesc}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${competitionDesc}\n\${replace}/${replay.pID}\n`)
+              appendFileSync(interfaceTXTPath, `${competitionDesc},\${replace}/${replay.pID}\n`)
             }
           }
           continue
@@ -156,12 +156,12 @@ async function updatePE(hours) {
           }
           const competitionDesc = `${data.competitionName} ${pkInfoTitle} ${live.name} ${live.startTimeStr.substring(11, 16)}`
           // 写入赛事
-          appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${competitionDesc}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${competitionDesc}\n\${replace}/${pass == "" ? "" : pass + "/"}${live.pID}\n`)
-          appendFileSync(interfaceTXTPath, `${competitionDesc},\${replace}/${pass == "" ? "" : pass + "/"}${live.pID}\n`)
+          appendFileSync(interfacePath, `#EXTINF:-1 tvg-id="${pkInfoTitle}" tvg-name="${competitionDesc}" tvg-logo="${data.competitionLogo}" group-title="体育-${relativeDate}",${competitionDesc}\n\${replace}/${live.pID}\n`)
+          appendFileSync(interfaceTXTPath, `${competitionDesc},\${replace}/${live.pID}\n`)
         }
       } catch (error) {
-        printRed(`${data.mgdbId} ${pkInfoTitle} 更新失败`)
-        printRed(error)
+        printYellow(`${data.mgdbId} ${pkInfoTitle} 更新失败 此警告不影响正常使用 可忽略`)
+        printYellow(error)
       }
     }
     printGreen(`日期 ${date} 更新完成！`)

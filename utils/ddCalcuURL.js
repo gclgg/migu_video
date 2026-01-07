@@ -104,7 +104,7 @@ function getEncryptURL(exports, videoURL) {
  * @param {string} rateType - 清晰度 2:标清 3:高清 4:蓝光
  * @returns {string} - ddCalcu
  */
-function getddCalcu(puData, programId, clientType, rateType) {
+function getddCalcu(puData, programId, clientType, rateType, urlUserId) {
 
   if (puData == null || puData == undefined) {
     return ""
@@ -123,7 +123,7 @@ function getddCalcu(puData, programId, clientType, rateType) {
   }
 
   // 不登录标清是默认v
-  const id = userId ? userId : process.env.USERID
+  const id = urlUserId || userId || process.env.USERID || ""
   if (id) {
     const words1 = list.android.keys[id[7]]
     list.android.words[0] = words1
@@ -137,7 +137,7 @@ function getddCalcu(puData, programId, clientType, rateType) {
   if (clientType == "android" && rateType == "2") {
     words[0] = "v"
   }
-  if (userId.length > 3 && userId.length <= 8) {
+  if (id.length > 3 && id.length <= 8) {
     words[0] = "e"
   }
   const puDataLength = puData.length
@@ -172,7 +172,7 @@ function getddCalcu(puData, programId, clientType, rateType) {
  * @param {string} rateType - 清晰度 2:标清 3:高清 4:蓝光
  * @returns {string} - 加密链接
  */
-function getddCalcuURL(puDataURL, programId, clientType, rateType) {
+function getddCalcuURL(puDataURL, programId, clientType, rateType, urlUserId) {
 
   if (puDataURL == null || puDataURL == undefined) {
     return ""
@@ -191,7 +191,7 @@ function getddCalcuURL(puDataURL, programId, clientType, rateType) {
   }
 
   const puData = puDataURL.split("&puData=")[1]
-  const ddCalcu = getddCalcu(puData, programId, clientType, rateType)
+  const ddCalcu = getddCalcu(puData, programId, clientType, rateType, urlUserId)
   const suffix = list[clientType].suffix
 
   return `${puDataURL}&ddCalcu=${ddCalcu}${suffix}`
