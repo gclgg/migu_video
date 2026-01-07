@@ -38,7 +38,7 @@ async function updateTV(hours) {
       // }
     }
   }
-  appendFile(interfacePath, `#EXTM3U x-tvg-url="\${replace}/${pass == "" ? "" : pass + "/"}playback.xml" catchup="append" catchup-source="?playbackbegin=\${(b)yyyyMMddHHmmss}&playbackend=\${(e)yyyyMMddHHmmss}"\n`)
+  appendFile(interfacePath, `#EXTM3U x-tvg-url="\${replace}/playback.xml" catchup="append" catchup-source="?playbackbegin=\${(b)yyyyMMddHHmmss}&playbackend=\${(e)yyyyMMddHHmmss}"\n`)
   printYellow("开始更新TV...")
   // 回放
   const playbackFile = `${process.cwd()}/playback.xml.bak`
