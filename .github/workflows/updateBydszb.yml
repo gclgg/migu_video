@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   # push:
   schedule:
-    - cron: 30 */6 * * *
+    - cron: 0 */4 * * *
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -11,19 +11,28 @@ jobs:
     steps:
       - name: 检出
         uses: actions/checkout@v4
-      - name: 测试网络
-        run: curl http://ds.fengcaizb.com/channels/dszb3.gz --output zb3
+      - name: 创建NodeJs20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: ./package-lock.json
+      - name: Cache node_modules in api directory
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('./api/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: 更新内容
-        run: |
-          # cp migu_video/interface.txt .
-          # cp migu_video/playback.xml .
-          # rm -rf migu_video
+        run: node fetchURLByzbpro.js
       - name: 推送
         run: |
-          # if ! git diff --quiet --exit-code || [ -n "$(git status --porcelain)" ]; then
-          #   git config user.name "GitHub Actions"
-          #   git config user.email "actions@github.com"
-          #   git add .
-          #   git commit -m "Update by GitHub Actions"
-          #   git push
-          # fi
+          if ! git diff --quiet --exit-code || [ -n "$(git status --porcelain)" ]; then
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            git add .
+            git commit -m "Update by GitHub Actions"
+            git push
+          fi
