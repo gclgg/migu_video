@@ -41,6 +41,9 @@ const domainWhiteList = [
   "pull-hls-f1.douyincdn.com",
   "pull-flv-f1.douyincdn.com",
   "pull-hs-f5.flive.douyincdn.com",
+  "hlsal-ldvt.qing.mgtv.com",
+  "bd-xwl.cztv.com",
+  "play-qukan.cztv.com",
 ]
 
 export { cntvNames, domainWhiteList }
