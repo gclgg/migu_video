@@ -15,16 +15,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-          cache-dependency-path: ./package-lock.json
-      - name: Cache node_modules in api directory
-        id: cache-npm
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('./api/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: 更新内容
         run: node fetchURLByzbpro.js
       - name: 推送

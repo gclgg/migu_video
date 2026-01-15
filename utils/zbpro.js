@@ -69,6 +69,8 @@ async function getAllURL() {
         // printYellow(`${channel?.title} 广告频道, 过滤`)
         continue
       }
+      channel.title = channel.title.replace("-", "");
+
 
       if (channel?.province != lastChannelCate) {
         channelsURLTXT.push(`${channel?.province},#genre#`)
@@ -93,7 +95,7 @@ async function getAllURL() {
           const timeoutId = setTimeout(() => {
             controller.abort()
             // console.log("请求超时")
-          }, 1200);
+          }, 500);
           const test = await fetch(decryptURL, {
             signal: controller.signal
           })
