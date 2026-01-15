@@ -23,12 +23,12 @@ function getLocalIPv(ver = 4) {
   return ips
 }
 
-async function fetchUrl(url, opts = {}) {
+async function fetchUrl(url, opts = {}, timeout = 6000) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => {
     controller.abort()
     printRed("请求超时")
-  }, 6000);
+  }, timeout);
   opts["signal"] = controller.signal
   const res = await fetch(url, opts)
     .then(r => r.json())

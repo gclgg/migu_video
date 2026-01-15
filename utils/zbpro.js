@@ -2,6 +2,8 @@ import { printGreen, printMagenta, printRed } from "./colorOut.js"
 import crypto from "node:crypto"
 import { writeFileSync } from "node:fs"
 import { gunzipSync } from "node:zlib"
+import { debug } from "../config.js"
+import { domainWhiteList } from "./datas.js"
 
 const KEY_ARRAY = [121, 111, 117, 33, 106, 101, 64, 49, 57, 114, 114, 36, 50, 48, 121, 35]
 const IV_ARRAY = [65, 114, 101, 121, 111, 117, 124, 62, 127, 110, 54, 38, 13, 97, 110, 63]
@@ -20,9 +22,24 @@ function AESdecrypt(baseData, keyArray = KEY_ARRAY, ivArray = IV_ARRAY) {
   return dest.toString()
 }
 
+/**
+ * @param {Array<String>} whiteList - 域名白名单
+ * @param {String} item - 域名
+ * @returns {Boolean} - 是否在白名单
+ */
+function isInWhiteList(whiteList, item) {
+  for (const white of whiteList) {
+    if (item == white) {
+      return true
+    }
+  }
+  return false
+}
+
 async function getAllURL() {
   const channelsURLM3U = []
   const channelsURLTXT = []
+  const domains = {}
   let sumChannel = 0
   const headers = { Referer: "http://pro.fengcaizb.com" }
   await fetch("http://pro.fengcaizb.com/channels/pro.gz", {
@@ -68,25 +85,40 @@ async function getAllURL() {
           // printYellow(`${i} ${channel?.title} 存在特殊字符, 过滤`)
           continue
         }
-        // 超时
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => {
-          controller.abort()
-          // console.log("请求超时")
-        }, 1200);
-        const test = await fetch(decryptURL, {
-          signal: controller.signal
-        })
-          .catch(_ => {
-            // console.log(err)
-            clearTimeout(timeoutId);
+        const domain = decryptURL.split("/")[2]
+        // 不在域名白名单
+        if (!isInWhiteList(domainWhiteList, domain)) {
+          // 超时
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => {
+            controller.abort()
+            // console.log("请求超时")
+          }, 1200);
+          const test = await fetch(decryptURL, {
+            signal: controller.signal
           })
-        clearTimeout(timeoutId);
+            .catch(_ => {
+              // console.log(err)
+              clearTimeout(timeoutId);
+            })
+          clearTimeout(timeoutId);
 
-        if (!test?.ok) {
-          // let msg = test == undefined ? "请求超时" : "无法播放"
-          // printYellow(`${i} ${channel?.title} ${msg}, 过滤`)
-          continue
+          if (!test?.ok) {
+            // let msg = test == undefined ? "请求超时" : "无法播放"
+            // printYellow(`${i} ${channel?.title} ${msg}, 过滤`)
+            continue
+          }
+          if (debug) {
+            if (domains[domain]) {
+              domains[domain].times += 1
+            } else {
+              domains[domain] = {
+                value: domain,
+                times: 1
+              }
+            }
+            // console.log(domain)
+          }
         }
         const channelURLM3U = `#EXTINF:-1 tvg-id="${channel?.title}" tvg-name="${channel?.title}" tvg-logo="" group-title="${channel?.province}",${channel.title}\n${decryptURL}`
         const channelURLTXT = `${channel?.title},${decryptURL}`
@@ -100,6 +132,13 @@ async function getAllURL() {
   const m3u = channelsURLM3U.join("\n")
   const txt = channelsURLTXT.join("\n")
   printGreen(`本次共更新${sumChannel}个`)
+  if (debug) {
+    Object.entries(domains)
+      .sort((a, b) => b[1].times - a[1].times)
+      .forEach(([_, item]) => {
+        console.log(`"${item.value}",次数: ${item.times}`)
+      })
+  }
   return {
     m3u: m3u,
     txt: txt

@@ -4,16 +4,16 @@ import { cntvNames } from "./datas.js"
 import { fetchUrl } from "./net.js"
 
 
-async function getPlaybackData(programId) {
+async function getPlaybackData(programId, timeout = 6000) {
   const date = new Date()
   const today = getDateString(date)
-  const resp = await fetchUrl(`https://program-sc.miguvideo.com/live/v2/tv-programs-data/${programId}/${today}`)
+  const resp = await fetchUrl(`https://program-sc.miguvideo.com/live/v2/tv-programs-data/${programId}/${today}`, {}, timeout)
   return resp.body?.program[0]?.content
 }
 
-async function updatePlaybackDataByMigu(program, filePath) {
+async function updatePlaybackDataByMigu(program, filePath, timeout = 6000) {
   // 今日节目数据
-  const playbackData = await getPlaybackData(program.pID)
+  const playbackData = await getPlaybackData(program.pID, timeout)
   if (!playbackData) {
     return false
   }
@@ -38,12 +38,12 @@ async function updatePlaybackDataByMigu(program, filePath) {
   return true
 }
 
-async function updatePlaybackDataByCntv(program, filePath) {
+async function updatePlaybackDataByCntv(program, filePath, timeout = 6000) {
   // 今日节目数据
   const date = new Date()
   const today = getDateString(date)
   const cntvName = cntvNames[program.name]
-  const resp = await fetchUrl(`https://api.cntv.cn/epg/epginfo3?serviceId=shiyi&d=${today}&c=${cntvName}`)
+  const resp = await fetchUrl(`https://api.cntv.cn/epg/epginfo3?serviceId=shiyi&d=${today}&c=${cntvName}`, {}, timeout)
 
   const playbackData = resp[cntvName]?.program
   if (!playbackData) {
@@ -70,11 +70,11 @@ async function updatePlaybackDataByCntv(program, filePath) {
   return true
 }
 
-async function updatePlaybackData(program, filePath) {
+async function updatePlaybackData(program, filePath, timeout = 6000) {
   if (cntvNames[program.name]) {
-    return updatePlaybackDataByCntv(program, filePath)
+    return updatePlaybackDataByCntv(program, filePath, timeout)
   }
-  return updatePlaybackDataByMigu(program, filePath)
+  return updatePlaybackDataByMigu(program, filePath, timeout)
 
 }
 export { updatePlaybackData }
