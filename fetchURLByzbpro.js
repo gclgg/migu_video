@@ -21,7 +21,7 @@ try {
   printMagenta("开始更新回放文件...")
   for (const data of datas) {
     for (const dataList of data?.dataList) {
-      await updatePlaybackData(dataList, playbackFile, 10000)
+      await updatePlaybackData(dataList, playbackFile, 10000, 8 * 60 * 60 * 1000)
     }
   }
 
