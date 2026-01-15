@@ -4,8 +4,8 @@ import { cntvNames } from "./datas.js"
 import { fetchUrl } from "./net.js"
 
 
-async function getPlaybackData(programId, timeout = 6000) {
-  const date = new Date()
+async function getPlaybackData(programId, timeout = 6000, githubAnd8) {
+  const date = new Date(Date.now() + githubAnd8)
   const today = getDateString(date)
   const resp = await fetchUrl(`https://program-sc.miguvideo.com/live/v2/tv-programs-data/${programId}/${today}`, {}, timeout)
   return resp.body?.program[0]?.content
@@ -13,7 +13,7 @@ async function getPlaybackData(programId, timeout = 6000) {
 
 async function updatePlaybackDataByMigu(program, filePath, timeout = 6000, githubAnd8 = 0) {
   // 今日节目数据
-  const playbackData = await getPlaybackData(program.pID, timeout)
+  const playbackData = await getPlaybackData(program.pID, timeout, githubAnd8)
   if (!playbackData) {
     return false
   }
@@ -40,7 +40,7 @@ async function updatePlaybackDataByMigu(program, filePath, timeout = 6000, githu
 
 async function updatePlaybackDataByCntv(program, filePath, timeout = 6000, githubAnd8 = 0) {
   // 今日节目数据
-  const date = new Date()
+  const date = new Date(Date.now() + githubAnd8)
   const today = getDateString(date)
   const cntvName = cntvNames[program.name]
   const resp = await fetchUrl(`https://api.cntv.cn/epg/epginfo3?serviceId=shiyi&d=${today}&c=${cntvName}`, {}, timeout)

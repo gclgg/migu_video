@@ -12,7 +12,6 @@ printMagenta("开始更新...")
 const datas = await dataList()
 printGreen("数据获取成功！")
 
-
 try {
   const playbackFile = `${process.cwd()}/playback.xml.bak`
 
