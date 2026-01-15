@@ -73,7 +73,7 @@ async function getAllURL() {
         const timeoutId = setTimeout(() => {
           controller.abort()
           // console.log("请求超时")
-        }, 300);
+        }, 1200);
         const test = await fetch(decryptURL, {
           signal: controller.signal
         })
