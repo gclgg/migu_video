@@ -91,14 +91,15 @@ async function getAllURL() {
       }
       for (const url of channel?.urls) {
         i += 1
-        const decryptURL = AESdecrypt(url)
+        let decryptURL = AESdecrypt(url)
         if (!decryptURL.startsWith("http")) {
           // printYellow(`${i} ${channel?.title} 格式错误, 过滤`)
           continue
         }
         if (decryptURL.indexOf("$") != -1) {
           // printYellow(`${i} ${channel?.title} 存在特殊字符, 过滤`)
-          continue
+          // continue
+          decryptURL = decryptURL.split("$")[0]
         }
         const domain = decryptURL.split("/")[2]
         // 不在域名白名单
@@ -108,7 +109,7 @@ async function getAllURL() {
           const timeoutId = setTimeout(() => {
             controller.abort()
             // console.log("请求超时")
-          }, 500);
+          }, 300);
           const test = await fetch(decryptURL, {
             signal: controller.signal
           })

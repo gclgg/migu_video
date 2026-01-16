@@ -13,15 +13,17 @@ printMagenta("开始更新接口文件...")
 const updateResult = await updateChannels()
 switch (updateResult) {
   case 1:
-    printGreen(`数据已是最新，无需更新`)
-    process.exit(0)
+    printGreen(`接口数据已是最新，无需更新`)
+    // process.exit(0)
+    break
   case 2:
-    printRed(`请求失败`)
-    process.exit(1)
+    printRed(`接口请求失败`)
+    // process.exit(1)
+    break
   default:
+    printGreen("接口文件更新完成！")
     break;
 }
-printGreen("接口文件更新完成！")
 
 // 6小时更新节目单
 if (start.getHours() % 6) {
