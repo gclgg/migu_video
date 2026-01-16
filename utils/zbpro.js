@@ -42,6 +42,7 @@ async function getAllURL() {
   const channelsURLTXT = []
   const domains = {}
   let sumChannel = 0
+  let status = 0
   const headers = { Referer: "http://pro.fengcaizb.com" }
   await fetch("http://pro.fengcaizb.com/channels/pro.gz", {
     headers: headers
@@ -49,7 +50,8 @@ async function getAllURL() {
     // await fetch("http://ds.fengcaizb.com/channels/dszb3.gz").then(async pro_gz => {
     if (!pro_gz?.ok) {
       printRed("请求失败")
-      return ""
+      status = 2
+      return 2
     }
     const bufferArray = await pro_gz.arrayBuffer()
     const buffer = Buffer.from(bufferArray)
@@ -61,9 +63,9 @@ async function getAllURL() {
     // console.log(result)
     // console.log(pro_gz)
     const result = JSON.parse(resultJSON)
-    if (result.timestamp == repoLinkUpdateTimestamp) {
-      printGreen(`数据已是最新，无需更新`)
-      return "1"
+    if (result.timestamp == String(repoLinkUpdateTimestamp)) {
+      status = 1
+      return 1
     }
 
     const data_jsPath = `${process.cwd()}/utils/datas.js`
@@ -142,6 +144,9 @@ async function getAllURL() {
       }
     }
   })
+  if (status != 0) {
+    return status
+  }
   const m3u = channelsURLM3U.join("\n")
   const txt = channelsURLTXT.join("\n")
   printGreen(`本次共更新${sumChannel}个`)
@@ -162,11 +167,12 @@ async function updateChannels() {
   const m3uFilePath = `${process.cwd()}/interface.txt`
   const txtFilePath = `${process.cwd()}/interfaceTXT.txt`
   const allURL = await getAllURL()
-  if (allURL == "1") {
-    return
+  if (allURL > 0) {
+    return allURL
   }
   writeFileSync(m3uFilePath, allURL.m3u)
   writeFileSync(txtFilePath, allURL.txt)
+  return 0
 }
 
 export default updateChannels

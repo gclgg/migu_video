@@ -10,7 +10,17 @@ printMagenta("开始更新...")
 
 
 printMagenta("开始更新接口文件...")
-await updateChannels()
+const updateResult = await updateChannels()
+switch (updateResult) {
+  case 1:
+    printGreen(`数据已是最新，无需更新`)
+    process.exit(0)
+  case 2:
+    printRed(`请求失败`)
+    process.exit(1)
+  default:
+    break;
+}
 printGreen("接口文件更新完成！")
 
 // 获取数据
