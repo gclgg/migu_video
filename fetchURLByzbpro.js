@@ -10,7 +10,15 @@ printMagenta("开始更新...")
 
 
 printMagenta("开始更新接口文件...")
-const updateResult = await updateChannels()
+let updateResult = 2
+for (let i = 0; i < 3; i++) {
+  try {
+    updateResult = await updateChannels()
+  } catch (error) {
+    printRed("接口更新出现问题，正在重试...")
+  }
+}
+
 switch (updateResult) {
   case 1:
     printGreen(`接口数据已是最新，无需更新`)
@@ -18,8 +26,7 @@ switch (updateResult) {
     break
   case 2:
     printRed(`接口请求失败`)
-    // process.exit(1)
-    break
+    process.exit(1)
   default:
     printGreen("接口文件更新完成！")
     break;
