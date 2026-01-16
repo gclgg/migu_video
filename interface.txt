@@ -64,13 +64,15 @@ http://hlsztemgsplive.miguvideo.com:8080/wd_r2/2018/ocn/hubeiwshd/2000/index.m3u
 #EXTINF:-1 tvg-id="辽宁卫视" tvg-name="辽宁卫视" tvg-logo="" group-title="卫视频道",辽宁卫视
 http://hlsztemgsplive.miguvideo.com:8080/wd_r2/2018/ocn/liaoningwshd/2000/index.m3u8?msisdn=20260116170833424f505c5537452aa231a64f2072c4da&mdspid=&spid=600572&netType=4&sid=5910022198&pid=2028597139&timestamp=20260116170833&Channel_ID=0116_2600001300-99000-201600010012031&ProgramID=630291707&ParentNodeID=-99&assertID=5910022198&client_ip=113.6.228.175&SecurityKey=20260116170833&promotionId=&mvid=5101043014&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=d3664f26d147b415f826f33088f0b5ba
 #EXTINF:-1 tvg-id="东南卫视" tvg-name="东南卫视" tvg-logo="" group-title="卫视频道",东南卫视
-http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/dongnanws/51/20230724/index.m3u8?msisdn=20260116120117ebcd254a9a374f0fadc8c0bba9bff48a&mdspid=&spid=600717&netType=4&sid=5910022182&pid=2028597139&timestamp=20260116120117&Channel_ID=0116_2600001300-99000-201600010012029&ProgramID=849116810&ParentNodeID=-99&assertID=5910022182&client_ip=113.6.228.178&SecurityKey=20260116120117&promotionId=&mvid=5900006229&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=dd71251dcff9b4e22a4ef125f73ec125
+http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/dongnanws/51/20230724/index.m3u8?msisdn=2026011618284345a6893c80444494a9960e9b3b839618&mdspid=&spid=600717&netType=4&sid=5910022182&pid=2028597139&timestamp=20260116182843&Channel_ID=0116_2600001300-99000-201600010012068&ProgramID=849116810&ParentNodeID=-99&assertID=5910022182&client_ip=113.6.228.61&SecurityKey=20260116182843&promotionId=&mvid=5900006229&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=3a50baa5e0b7079042b8673f693158a0
 #EXTINF:-1 tvg-id="吉林卫视" tvg-name="吉林卫视" tvg-logo="" group-title="卫视频道",吉林卫视
 http://hlsztemgsplive.miguvideo.com:8080/envivo_v/2018/SD/jilin/1000/index.m3u8?msisdn=2026011617094052bc42e9628c4f5c83ed24b29e6b443c&mdspid=&spid=600633&netType=4&sid=5910022164&pid=2028597139&timestamp=20260116170940&Channel_ID=0116_2600001300-99000-201600010012033&ProgramID=947472500&ParentNodeID=-99&assertID=5910022164&client_ip=113.6.228.174&SecurityKey=20260116170940&promotionId=&mvid=5900004357&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=c3ccc14f5556d3f52c7f77b649bbcd1c
 #EXTINF:-1 tvg-id="江西卫视" tvg-name="江西卫视" tvg-logo="" group-title="卫视频道",江西卫视
 http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/jxwshd/51/20190820/index.m3u8?msisdn=2026011617104298557231d4f843c399a48e8d0378946e&mdspid=&spid=600633&netType=4&sid=5910021492&pid=2028597139&timestamp=20260116171042&Channel_ID=0116_2600001300-99000-201600010012035&ProgramID=783847495&ParentNodeID=-99&assertID=5910021492&client_ip=113.6.228.172&SecurityKey=20260116171042&promotionId=&mvid=5900004351&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=a125a318a3d8d122af57e97d42b890ae
 #EXTINF:-1 tvg-id="兵团卫视" tvg-name="兵团卫视" tvg-logo="" group-title="卫视频道",兵团卫视
 http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/btws/51/20250804/index.m3u8?msisdn=20260116170905f48913b43b7f4f9eb0c70c0ca32ee535&mdspid=&spid=600697&netType=4&sid=5910022192&pid=2028597139&timestamp=20260116170905&Channel_ID=0116_2600001300-99000-201600010012032&ProgramID=956923145&ParentNodeID=-99&assertID=5910022192&client_ip=113.6.228.174&SecurityKey=20260116170905&promotionId=&mvid=5900006716&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=31b81c46c2155e836ce45bd61c2c415a
+#EXTINF:-1 tvg-id="广东民生" tvg-name="广东民生" tvg-logo="" group-title="广东地区",广东民生
+http://183.11.239.36:808/hls/18/index.m3u8
 #EXTINF:-1 tvg-id="广东体育" tvg-name="广东体育" tvg-logo="" group-title="广东地区",广东体育
 http://120.238.85.131:9901/tsfile/live/1013_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 tvg-id="广东少儿" tvg-name="广东少儿" tvg-logo="" group-title="广东地区",广东少儿
@@ -161,6 +163,8 @@ http://stream.thmz.com/wxtv4/sd/live.m3u8
 http://stream.thmz.com/wxtv2/sd/live.m3u8
 #EXTINF:-1 tvg-id="无锡经济" tvg-name="无锡经济" tvg-logo="" group-title="江苏地区",无锡经济
 http://stream.thmz.com/wxtv5/sd/live.m3u8
+#EXTINF:-1 tvg-id="宜兴新闻综合" tvg-name="宜兴新闻综合" tvg-logo="" group-title="江苏地区",宜兴新闻综合
+http://yixing-tv-ori-hls.jstv.com/yixing-tv-ori/yixing_xw.m3u8
 #EXTINF:-1 tvg-id="哈尔滨新闻综合" tvg-name="哈尔滨新闻综合" tvg-logo="" group-title="黑龙江地区",哈尔滨新闻综合
 https://stream.hrbtv.net/xwzh/sd/live.m3u8
 #EXTINF:-1 tvg-id="哈尔滨新闻综合" tvg-name="哈尔滨新闻综合" tvg-logo="" group-title="黑龙江地区",哈尔滨新闻综合
@@ -501,8 +505,6 @@ http://live.dxhmt.cn:9081/tv/10421-1.m3u8
 http://tvpull.dxhmt.cn:9081/tv/10183-2.m3u8
 #EXTINF:-1 tvg-id="新密新闻频道" tvg-name="新密新闻频道" tvg-logo="" group-title="河南地区",新密新闻频道
 http://live.dxhmt.cn:9081/tv/10183-2.m3u8
-#EXTINF:-1 tvg-id="津南电视台" tvg-name="津南电视台" tvg-logo="" group-title="天津地区",津南电视台
-http://play.jinnantv.top/live/JNTV1.m3u8
 #EXTINF:-1 tvg-id="嘉峪关综合" tvg-name="嘉峪关综合" tvg-logo="" group-title="甘肃地区",嘉峪关综合
 https://play.kankanlive.com/live/1658978094528926.m3u8
 #EXTINF:-1 tvg-id="嘉峪关公共" tvg-name="嘉峪关公共" tvg-logo="" group-title="甘肃地区",嘉峪关公共
@@ -642,7 +644,7 @@ http://hlsztemgsplive.miguvideo.com:8080/wd_r4/dfl/dongfangwshd/1200/index.m3u8?
 #EXTINF:-1 tvg-id="辽宁卫视超清" tvg-name="辽宁卫视超清" tvg-logo="" group-title="超清频道",辽宁卫视超清
 http://hlsztemgsplive.miguvideo.com:8080/wd_r2/2018/ocn/liaoningwshd/2000/index.m3u8?msisdn=20260116170833424f505c5537452aa231a64f2072c4da&mdspid=&spid=600572&netType=4&sid=5910022198&pid=2028597139&timestamp=20260116170833&Channel_ID=0116_2600001300-99000-201600010012031&ProgramID=630291707&ParentNodeID=-99&assertID=5910022198&client_ip=113.6.228.175&SecurityKey=20260116170833&promotionId=&mvid=5101043014&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=d3664f26d147b415f826f33088f0b5ba
 #EXTINF:-1 tvg-id="东南卫视超清" tvg-name="东南卫视超清" tvg-logo="" group-title="超清频道",东南卫视超清
-http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/dongnanws/51/20230724/index.m3u8?msisdn=20260116120117ebcd254a9a374f0fadc8c0bba9bff48a&mdspid=&spid=600717&netType=4&sid=5910022182&pid=2028597139&timestamp=20260116120117&Channel_ID=0116_2600001300-99000-201600010012029&ProgramID=849116810&ParentNodeID=-99&assertID=5910022182&client_ip=113.6.228.178&SecurityKey=20260116120117&promotionId=&mvid=5900006229&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=dd71251dcff9b4e22a4ef125f73ec125
+http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/dongnanws/51/20230724/index.m3u8?msisdn=2026011618284345a6893c80444494a9960e9b3b839618&mdspid=&spid=600717&netType=4&sid=5910022182&pid=2028597139&timestamp=20260116182843&Channel_ID=0116_2600001300-99000-201600010012068&ProgramID=849116810&ParentNodeID=-99&assertID=5910022182&client_ip=113.6.228.61&SecurityKey=20260116182843&promotionId=&mvid=5900006229&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=3a50baa5e0b7079042b8673f693158a0
 #EXTINF:-1 tvg-id="江西卫视超清" tvg-name="江西卫视超清" tvg-logo="" group-title="超清频道",江西卫视超清
 http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/jxwshd/51/20190820/index.m3u8?msisdn=2026011617104298557231d4f843c399a48e8d0378946e&mdspid=&spid=600633&netType=4&sid=5910021492&pid=2028597139&timestamp=20260116171042&Channel_ID=0116_2600001300-99000-201600010012035&ProgramID=783847495&ParentNodeID=-99&assertID=5910021492&client_ip=113.6.228.172&SecurityKey=20260116171042&promotionId=&mvid=5900004351&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=a125a318a3d8d122af57e97d42b890ae
 #EXTINF:-1 tvg-id="湖南卫视4K" tvg-name="湖南卫视4K" tvg-logo="" group-title="超清频道",湖南卫视4K
