@@ -23,6 +23,11 @@ switch (updateResult) {
 }
 printGreen("接口文件更新完成！")
 
+// 6小时更新节目单
+if (start.getHours() % 6) {
+  process.exit(0)
+}
+
 // 获取数据
 const datas = await dataList()
 printGreen("数据获取成功！")
