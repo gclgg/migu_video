@@ -14,6 +14,7 @@ let updateResult = 2
 for (let i = 0; i < 3; i++) {
   try {
     updateResult = await updateChannels()
+    break
   } catch (error) {
     printRed("接口更新出现问题，正在重试...")
   }
