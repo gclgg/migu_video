@@ -3,7 +3,8 @@ import crypto from "node:crypto"
 import { writeFileSync } from "node:fs"
 import { gunzipSync } from "node:zlib"
 import { debug } from "../config.js"
-import { domainWhiteList } from "./datas.js"
+import { domainWhiteList, repoLinkUpdateTimestamp } from "./datas.js"
+import { readFileSync } from "./fileUtil.js"
 
 const KEY_ARRAY = [121, 111, 117, 33, 106, 101, 64, 49, 57, 114, 114, 36, 50, 48, 121, 35]
 const IV_ARRAY = [65, 114, 101, 121, 111, 117, 124, 62, 127, 110, 54, 38, 13, 97, 110, 63]
@@ -60,6 +61,16 @@ async function getAllURL() {
     // console.log(result)
     // console.log(pro_gz)
     const result = JSON.parse(resultJSON)
+    if (result.timestamp == repoLinkUpdateTimestamp) {
+      printGreen(`数据已是最新，无需更新`)
+      return "1"
+    }
+
+    const data_jsPath = `${process.cwd()}/utils/datas.js`
+    const datas_js = readFileSync(data_jsPath)
+    // console.log(datas_js.toString())
+    writeFileSync(data_jsPath, datas_js.toString().replace(repoLinkUpdateTimestamp, result.timestamp))
+
     channelsURLM3U.push(`#EXTM3U x-tvg-url="https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/playback.xml,https://hk.gh-proxy.org/raw.githubusercontent.com/develop202/migu_video/refs/heads/main/playback.xml,https://develop202.github.io/migu_video/playback.xml,https://raw.githubusercontents.com/develop202/migu_video/refs/heads/main/playback.xml" catchup="append" catchup-source="&playbackbegin=\${(b)yyyyMMddHHmmss}&playbackend=\${(e)yyyyMMddHHmmss}"`)
     let i = 0
     let lastChannelCate = ""
@@ -151,6 +162,9 @@ async function updateChannels() {
   const m3uFilePath = `${process.cwd()}/interface.txt`
   const txtFilePath = `${process.cwd()}/interfaceTXT.txt`
   const allURL = await getAllURL()
+  if (allURL == "1") {
+    return
+  }
   writeFileSync(m3uFilePath, allURL.m3u)
   writeFileSync(txtFilePath, allURL.txt)
 }

@@ -8,6 +8,11 @@ import updateChannels from "./utils/zbpro.js"
 const start = new Date()
 printMagenta("开始更新...")
 
+
+printMagenta("开始更新接口文件...")
+await updateChannels()
+printGreen("接口文件更新完成！")
+
 // 获取数据
 const datas = await dataList()
 printGreen("数据获取成功！")
@@ -32,8 +37,5 @@ try {
   printRed("回放文件更新失败！")
 }
 
-printMagenta("开始更新接口文件...")
-await updateChannels()
-printGreen("接口文件更新完成！")
 printGreen(`用时 ${(Date.now() - start.getTime()) / 1000}秒`)
 

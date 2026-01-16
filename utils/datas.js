@@ -1,3 +1,5 @@
+// 更新时间
+const repoLinkUpdateTimestamp = 1768517735218
 // 回放
 const cntvNames = {
   "CCTV1综合": "cctv1",
@@ -46,4 +48,4 @@ const domainWhiteList = [
   "play-qukan.cztv.com",
 ]
 
-export { cntvNames, domainWhiteList }
+export { cntvNames, domainWhiteList, repoLinkUpdateTimestamp }
