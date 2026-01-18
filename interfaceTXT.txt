@@ -87,6 +87,7 @@ CCTV17农业农村,http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/20200324/
 无锡生活,http://stream.thmz.com/wxtv4/sd/live.m3u8
 无锡娱乐,http://stream.thmz.com/wxtv2/sd/live.m3u8
 无锡经济,http://stream.thmz.com/wxtv5/sd/live.m3u8
+宜兴新闻综合,http://yixing-tv-ori-hls.jstv.com/yixing-tv-ori/yixing_xw.m3u8
 北京地区,#genre#
 黑龙江地区,#genre#
 哈尔滨新闻综合,https://stream.hrbtv.net/xwzh/sd/live.m3u8
@@ -161,7 +162,6 @@ CCTV17农业农村,http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/20200324/
 福建地区,#genre#
 海峡卫视,http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/haixiaws/51/20230724/index.m3u8?msisdn=2026011806425131881ba2d0584c42943bff6d406b81d1&mdspid=&spid=600717&netType=4&sid=5910022183&pid=2028597139&timestamp=20260118064251&Channel_ID=0116_2600001300-99000-201600010012221&ProgramID=849119120&ParentNodeID=-99&assertID=5910022183&client_ip=219.154.235.105&SecurityKey=20260118064251&promotionId=&mvid=5900006231&mcid=500020&playurlVersion=WX-A1-8.12.2-RELEASE&userid=&jmhm=&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=a7a4fd82867fe4da5c4197db9b76d9ec
 河南地区,#genre#
-河南曲艺,http://live.dxhmt.cn:9080/19903718786/854deb36f8db4c9098cad18cc35bd632.m3u8
 济源综合,http://tvpull.dxhmt.cn:9081/tv/19001-1.m3u8
 济源综合,http://live.dxhmt.cn:9081/tv/19001-1.m3u8
 兰考综合,http://tvpull.dxhmt.cn:9081/tv/10225-1.m3u8
