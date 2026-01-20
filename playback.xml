@@ -6357,11 +6357,8 @@
     <programme channel="上视东方影视" start="20260120074800 +0800" stop="20260120083600 +0800">
         <title lang="zh">38集连续剧：致命行动（1）</title>
     </programme>
-    <programme channel="上视东方影视" start="20260120083600 +0800" stop="20260120085000 +0800">
-        <title lang="zh">36.7℃（23）[1]</title>
-    </programme>
-    <programme channel="上视东方影视" start="20260120085000 +0800" stop="20260120085200 +0800">
-        <title lang="zh">36.7℃（23）[2]</title>
+    <programme channel="上视东方影视" start="20260120083600 +0800" stop="20260120085200 +0800">
+        <title lang="zh">36.7℃</title>
     </programme>
     <programme channel="上视东方影视" start="20260120085200 +0800" stop="20260120094400 +0800">
         <title lang="zh">38集连续剧：致命行动（2）</title>
@@ -6385,7 +6382,7 @@
         <title lang="zh">45集连续剧：忍冬艳蔷薇（21）</title>
     </programme>
     <programme channel="上视东方影视" start="20260120133700 +0800" stop="20260120135300 +0800">
-        <title lang="zh">都市焕新家(82)</title>
+        <title lang="zh">都市焕新家</title>
     </programme>
     <programme channel="上视东方影视" start="20260120135300 +0800" stop="20260120144900 +0800">
         <title lang="zh">45集连续剧：忍冬艳蔷薇（22）</title>
@@ -6420,13 +6417,10 @@
     <programme channel="上视东方影视" start="20260120221700 +0800" stop="20260120230600 +0800">
         <title lang="zh">38集连续剧：致命行动（10）</title>
     </programme>
-    <programme channel="上视东方影视" start="20260120230600 +0800" stop="20260120231700 +0800">
-        <title lang="zh">36.7℃（23）[1]</title>
+    <programme channel="上视东方影视" start="20260120230600 +0800" stop="20260120232000 +0800">
+        <title lang="zh">36.7℃</title>
     </programme>
-    <programme channel="上视东方影视" start="20260120231700 +0800" stop="20260120232000 +0800">
-        <title lang="zh">36.7℃（23）[2]</title>
-    </programme>
-    <programme channel="上视东方影视" start="20260120232000 +0800" stop="20260121000000 +0800">
+    <programme channel="上视东方影视" start="20260120232000 +0800" stop="20260121000100 +0800">
         <title lang="zh">40集连续剧：决胜（34）</title>
     </programme>
     <channel id="上海第一财经">
