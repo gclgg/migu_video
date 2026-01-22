@@ -161,7 +161,7 @@ async function updatePE(hours) {
         }
       } catch (error) {
         printYellow(`${data.mgdbId} ${pkInfoTitle} 更新失败 此警告不影响正常使用 可忽略`)
-        printYellow(error)
+        // printYellow(error)
       }
     }
     printGreen(`日期 ${date} 更新完成！`)
