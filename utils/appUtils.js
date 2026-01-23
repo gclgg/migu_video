@@ -42,9 +42,6 @@ function interfaceStr(url, headers, urlUserId, urlToken) {
   }
 
   let replaceHost = `http://${headers.host}`
-  if (urlUserId != userId && urlToken != token) {
-    replaceHost = `${replaceHost}/${urlUserId}/${urlToken}`
-  }
 
   if (host != "" && (headers["x-real-ip"] || headers["x-forwarded-for"] || host.indexOf(headers.host) != -1)) {
     replaceHost = host
@@ -52,6 +49,10 @@ function interfaceStr(url, headers, urlUserId, urlToken) {
 
   if (pass != "") {
     replaceHost = `${replaceHost}/${pass}`
+  }
+
+  if (urlUserId != userId && urlToken != token) {
+    replaceHost = `${replaceHost}/${urlUserId}/${urlToken}`
   }
 
   result.content = `${result.content}`.replaceAll("${replace}", replaceHost);
