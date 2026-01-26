@@ -26,7 +26,7 @@ https://gh-proxy.com/https://raw.githubusercontent.com/develop202/migu_video/ref
 > 注意事项
 >
 > 1. 登录后使用不保证安全，请谨慎使用
-> 1. 需要国内IP才可正常访问
+> 1. 需要国内IP才可正常访问（非港澳台地区）
 
 ## 配置
 

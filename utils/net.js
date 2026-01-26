@@ -29,14 +29,20 @@ async function fetchUrl(url, opts = {}, timeout = 6000) {
     controller.abort()
     printRed("请求超时")
   }, timeout);
-  opts["signal"] = controller.signal
-  const res = await fetch(url, opts)
-    .then(r => r.json())
+  // opts["signal"] = controller.signal
+  const res = await fetch(url, {
+    ...opts,
+    signal: controller.signal
+  })
+    .then(r => {
+      clearTimeout(timeoutId);
+      return r.json()
+    })
     .catch(err => {
       console.log(err)
       clearTimeout(timeoutId);
     })
-  clearTimeout(timeoutId);
+
   return res
 }
 
