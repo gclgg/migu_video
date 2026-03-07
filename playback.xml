@@ -9372,6 +9372,39 @@
     <programme channel="经典香港电影" start="20260307042200 +0800" stop="20260307060800 +0800">
         <title lang="zh">被消失的凶案（普通话）</title>
     </programme>
+    <programme channel="经典香港电影" start="20260307060800 +0800" stop="20260307074200 +0800">
+        <title lang="zh">门徒（普通话）</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307074200 +0800" stop="20260307091000 +0800">
+        <title lang="zh">反贪风暴（普通话）</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307091000 +0800" stop="20260307104800 +0800">
+        <title lang="zh">赌神3之少年赌神（普通话）</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307104800 +0800" stop="20260307123400 +0800">
+        <title lang="zh">被消失的凶案（普通话）</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307123400 +0800" stop="20260307141200 +0800">
+        <title lang="zh">水浒传之英雄本色</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307141200 +0800" stop="20260307163000 +0800">
+        <title lang="zh">爆裂点</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307163000 +0800" stop="20260307180400 +0800">
+        <title lang="zh">门徒（普通话）</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307180400 +0800" stop="20260307193200 +0800">
+        <title lang="zh">反贪风暴（普通话）</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307193200 +0800" stop="20260307211100 +0800">
+        <title lang="zh">赌神3之少年赌神（普通话）</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307211100 +0800" stop="20260307225700 +0800">
+        <title lang="zh">被消失的凶案（普通话）</title>
+    </programme>
+    <programme channel="经典香港电影" start="20260307225700 +0800" stop="20260308003500 +0800">
+        <title lang="zh">水浒传之英雄本色</title>
+    </programme>
     <channel id="抗战经典影片">
         <display-name lang="zh">抗战经典影片</display-name>
     </channel>
