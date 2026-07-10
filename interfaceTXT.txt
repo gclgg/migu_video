@@ -1,5 +1,7 @@
 央视频道,#genre#
+CCTV1综合,https://ws-origin.pull.yximgs.com/gifshow/kwai_actL_ol_act_14801211039_strL_GameAvcHdL0.flv?wsTime=6a5175cb&wsSecret=5a2c754974f735e08c40bfc3022a833f&stat=DfXr0QtD7YVsx2lVB2%2FDa%2FKHHCkDwqn3PL9smDy%2B5htQxkc%2FPLQ9rjQ%2Fethk8oNI&tsc=origin&oidc=watchmen&sidc=2756&no_script=1&srcStrm=cidcN0MaPNI&ss=s20&tfc_buyer=0
 CCTV1综合,http://play.kankanlive.com/live/1698234869325962.m3u8
+CCTV13新闻,https://tx-origin.pull.yximgs.com/gifshow/kwai_actL_ol_act_14786674965_strL_EcAvcFhdL0Mate.flv?txSecret=1d0d7b3f2bc331436504c600e91ac9b2&txTime=6a517601&stat=VuXuKk%2FMGzIY4b%2FYbMLCS2aO3OXuPBwtX4KdSTifWFDcf6uODy1e4cwFoV2OiaHk&tsc=origin&highTraffic=2&oidc=watchmen&sidc=2756&no_script=1&srcStrm=X9Ey5urjTzw&ss=s20&tfc_buyer=1
 CCTV16奥林匹克,http://38.75.136.137:98/gslb/dsdqpub/cctv16hd.m3u8?auth=testpub
 卫视频道,#genre#
 湖南卫视,http://hlsal-ldvt.qing.mgtv.com/nn_live/nn_x64/Y2RuZXhfaWQ9YWxfaGxzX2xkdnQmZT02OTE0NjA0JnY9MSZpZD1ITldTWkdTVCZzPTcwN2RiYTc2YzJjNmJmMTQ4MmUyZGYzOWU2NWM3YWFi/HNWSZGST.m3u8
@@ -8,6 +10,7 @@ CCTV16奥林匹克,http://38.75.136.137:98/gslb/dsdqpub/cctv16hd.m3u8?auth=testp
 广东地区,#genre#
 广东民生,http://38.75.136.137:98/gslb/dsdqpub/gdgg.m3u8?auth=testpub
 广东移动,http://183.234.143.5:85/tsfile/live/1007_1.m3u8?key=txiptv&playlive=0&authid=0
+广东嘉佳卡通,http://183.234.143.5:85/tsfile/live/1069_1.m3u8?key=txiptv&playlive=0&authid=0
 广东少儿,http://183.234.143.5:85/tsfile/live/1001_1.m3u8?key=txiptv&playlive=0&authid=0
 广东影视,http://183.234.143.5:85/tsfile/live/1034_1.m3u8?key=txiptv&playlive=0&authid=0
 广东影视,http://120.238.85.131:9901/tsfile/live/1017_1.m3u8?key=txiptv&playlive=0&authid=0
@@ -34,6 +37,7 @@ CCTV16奥林匹克,http://38.75.136.137:98/gslb/dsdqpub/cctv16hd.m3u8?auth=testp
 新昌综合,http://l.cztvcloud.com/channels/lantian/SXxinchang1/720p.m3u8
 平湖新闻综合,http://l.cztvcloud.com/channels/lantian/SXpinghu1/720p.m3u8
 平湖民生休闲,http://l.cztvcloud.com/channels/lantian/SXpinghu2/720p.m3u8
+湖州公共频道,http://hzcm-live.media.hugd.com/1e6b554b9ab74513958c0e1ffe664d22/9acaa7634309494cb29a85eb12136607.m3u8?auth_key=2272900830-9a2389b8bf4e49d580d4ad807423d326-0-ea78a5c7a678c436263582d368f5009e
 青田电视台,http://l.cztvcloud.com/channels/lantian/SXqingtian1/720p.m3u8
 余姚新闻综合,http://l.cztvcloud.com/channels/lantian/SXyuyao1/720p.m3u8
 萧山综合,http://l.cztvcloud.com/channels/lantian/SXxiaoshan1/720p.m3u8
@@ -245,6 +249,7 @@ CCTV16奥林匹克,http://38.75.136.137:98/gslb/dsdqpub/cctv16hd.m3u8?auth=testp
 新疆地区,#genre#
 山西地区,#genre#
 天津地区,#genre#
+津南电视台,http://play.jinnantv.top/live/JNTV1.m3u8
 贵州地区,#genre#
 海南地区,#genre#
 甘肃地区,#genre#
